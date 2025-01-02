@@ -1,0 +1,52 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/TwoColumn.master" AutoEventWireup="true"
+    CodeFile="Main.master.cs" Inherits="Maintenance_Main" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="LeftColumn" runat="Server">
+    <div id='left-nav'>
+        <asp:HyperLink NavigateUrl="~/Maintenance/OcrEngine/" ID="OcrHyperLink" runat="server"
+            Visible="false">OCR Engine</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/UserAccounts/" ID="UserAccountsHyperLink"
+            runat="server">User Accounts</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/RoleManagement/" ID="RolesHyperLink" runat="server">Roles Management</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/AccessControl/" ID="AccessControlHyperLink"
+            runat="server">Access Control</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/ControlParameters/" ID="ParametersHyperLink"
+            runat="server">Control Parameters</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/OcrParameters/" ID="OcrParametersHyperLink"
+            runat="server">OCR Parameters</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/EmailTemplates/" ID="EmailTemplatesHyperLink"
+            runat="server" Visible="false">Email Templates</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/ImageRouting/" ID="ImageRoutingHyperLink"
+            runat="server" Visible="false">Image Routing Table</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/DocumentType/" ID="DocTypeHyperLink" runat="server">Document Types</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/StreetTable/" ID="StreetTableHyperLink"
+            runat="server">Street Name</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/IncomeWorksheet/" ID="IncomeWorksheetHyperLink"
+            runat="server" Visible="false">Income Worksheet Template Table</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/Oic/" ID="OicHyperLink" runat="server"
+            Visible="false">OIC Table</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/ReportRouting/" ID="ReportRoutingHyperLink"
+            runat="server" Visible="false">Report Routing Table</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/TransferData/" ID="TransferDataHyperlink"
+            runat="server" Visible="false">Transfer Data to Mainframe System</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/MasterList/" ID="MasterListHyperLink" runat="server">Master List</asp:HyperLink>
+        <%-- <asp:HyperLink NavigateUrl="~/Maintenance/AuditTrail/" ID="AuditTrailHyperLink" 
+            runat="server" Visible="false">Audit Trail</asp:HyperLink>--%>
+        <asp:HyperLink NavigateUrl="~/Maintenance/Organization/" ID="OrganizationHyperLink"
+            runat="server">Organization</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/ImportInterface/" ID="ImportInterfaceHyperLink"
+            runat="server">Import Interface Files</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/StopWords/" ID="StopWordsHyperLink" runat="server">Stop Words</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/BatchUpload/" ID="BatchUploadHyperLink"
+            runat="server">Batch Upload</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/AuditTrail/" ID="AuditTrailHyperLink" runat="server">Audit Trail</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/AuditTrail/SetAction.aspx" ID="SetActionHyperLink" runat="server">Set Action</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/IncomeTemplate/" ID="IncomeTemplateHyperLink"
+            runat="server">Income Template</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Maintenance/ArchiveDocuments/" ID="ArchiveDocumentsHyperLink" runat="server">Archive Parameters</asp:HyperLink>
+    </div>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="RightColumn" runat="Server">
+    <asp:ContentPlaceHolder ID="MainColumn" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>

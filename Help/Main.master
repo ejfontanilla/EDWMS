@@ -1,0 +1,21 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/TwoColumn.master" AutoEventWireup="true"
+    CodeFile="Main.master.cs" Inherits="Help_Main" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="LeftColumn" runat="Server">
+    <div id='left-nav'>
+        <asp:HyperLink NavigateUrl="~/Help/Guides/" ID="GuidesHyperLink" runat="server" Visible="false">Guides</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Help/Login/" ID="LoginHyperLink" runat="server">Login</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Help/Contact/" ID="ContactHyperLink" runat="server">Contact Administrator</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Help/Import/" ID="ImportHyperLink" runat="server">Import</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Help/Verification/" ID="VerificationHyperLink" runat="server">Verification</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Help/Completeness/" ID="CompletenessHyperLink" runat="server">Completeness</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Help/Maintenance/" ID="MaintenanceHyperLink" runat="server">Maintenance</asp:HyperLink>
+        <asp:HyperLink NavigateUrl="~/Help/FileDoc/" ID="FileDocHyperLink" runat="server">File Doc</asp:HyperLink>
+        <%-- <asp:HyperLink NavigateUrl="~/Help/FAQ/" ID="FAQHyperLink" 
+            runat="server">FAQ</asp:HyperLink>--%>
+    </div>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="RightColumn" runat="Server">
+    <asp:ContentPlaceHolder ID="MainColumn" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>

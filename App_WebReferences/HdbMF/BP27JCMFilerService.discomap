@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="file:///E:/WebSite/ABCDE_Test/Data/WSDL/BP27JCMFilerService_schema1.xsd" filename="BP27JCMFilerService_schema1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="file:///E:/WebSite/ABCDE_Test/Data/WSDL/BP27JCMFilerService.wsdl" filename="BP27JCMFilerService.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

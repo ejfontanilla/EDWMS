@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="DoOcr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="rawPageId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoOcrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DoOcrResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CountOcrPageCustom">
+        <s:complexType />
+      </s:element>
+      <s:element name="CountOcrPageCustomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CountOcrPageCustomResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="int" type="s:int" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DoOcrSoapIn">
+    <wsdl:part name="parameters" element="tns:DoOcr" />
+  </wsdl:message>
+  <wsdl:message name="DoOcrSoapOut">
+    <wsdl:part name="parameters" element="tns:DoOcrResponse" />
+  </wsdl:message>
+  <wsdl:message name="CountOcrPageCustomSoapIn">
+    <wsdl:part name="parameters" element="tns:CountOcrPageCustom" />
+  </wsdl:message>
+  <wsdl:message name="CountOcrPageCustomSoapOut">
+    <wsdl:part name="parameters" element="tns:CountOcrPageCustomResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoOcrHttpGetIn">
+    <wsdl:part name="rawPageId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DoOcrHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="CountOcrPageCustomHttpGetIn" />
+  <wsdl:message name="CountOcrPageCustomHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="DoOcrHttpPostIn">
+    <wsdl:part name="rawPageId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DoOcrHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="CountOcrPageCustomHttpPostIn" />
+  <wsdl:message name="CountOcrPageCustomHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:portType name="OcrManagerSoap">
+    <wsdl:operation name="DoOcr">
+      <wsdl:input message="tns:DoOcrSoapIn" />
+      <wsdl:output message="tns:DoOcrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CountOcrPageCustom">
+      <wsdl:input message="tns:CountOcrPageCustomSoapIn" />
+      <wsdl:output message="tns:CountOcrPageCustomSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="OcrManagerHttpGet">
+    <wsdl:operation name="DoOcr">
+      <wsdl:input message="tns:DoOcrHttpGetIn" />
+      <wsdl:output message="tns:DoOcrHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CountOcrPageCustom">
+      <wsdl:input message="tns:CountOcrPageCustomHttpGetIn" />
+      <wsdl:output message="tns:CountOcrPageCustomHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="OcrManagerHttpPost">
+    <wsdl:operation name="DoOcr">
+      <wsdl:input message="tns:DoOcrHttpPostIn" />
+      <wsdl:output message="tns:DoOcrHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CountOcrPageCustom">
+      <wsdl:input message="tns:CountOcrPageCustomHttpPostIn" />
+      <wsdl:output message="tns:CountOcrPageCustomHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OcrManagerSoap" type="tns:OcrManagerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoOcr">
+      <soap:operation soapAction="http://tempuri.org/DoOcr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountOcrPageCustom">
+      <soap:operation soapAction="http://tempuri.org/CountOcrPageCustom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OcrManagerSoap12" type="tns:OcrManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoOcr">
+      <soap12:operation soapAction="http://tempuri.org/DoOcr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountOcrPageCustom">
+      <soap12:operation soapAction="http://tempuri.org/CountOcrPageCustom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OcrManagerHttpGet" type="tns:OcrManagerHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="DoOcr">
+      <http:operation location="/DoOcr" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountOcrPageCustom">
+      <http:operation location="/CountOcrPageCustom" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OcrManagerHttpPost" type="tns:OcrManagerHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="DoOcr">
+      <http:operation location="/DoOcr" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountOcrPageCustom">
+      <http:operation location="/CountOcrPageCustom" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OcrManager">
+    <wsdl:port name="OcrManagerSoap" binding="tns:OcrManagerSoap">
+      <soap:address location="http://localhost:60384/DWMS/Test/Progress/OcrManager.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OcrManagerSoap12" binding="tns:OcrManagerSoap12">
+      <soap12:address location="http://localhost:60384/DWMS/Test/Progress/OcrManager.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OcrManagerHttpGet" binding="tns:OcrManagerHttpGet">
+      <http:address location="http://localhost:60384/DWMS/Test/Progress/OcrManager.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OcrManagerHttpPost" binding="tns:OcrManagerHttpPost">
+      <http:address location="http://localhost:60384/DWMS/Test/Progress/OcrManager.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

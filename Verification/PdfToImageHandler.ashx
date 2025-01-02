@@ -1,0 +1,1 @@
+﻿<%@ WebHandler Language="C#" Class="TallComponents.Web.Pdf.PdfToImageHandler" %>

@@ -1,0 +1,52 @@
+﻿<%@ Page Language="C#" MasterPageFile="Blank.master" AutoEventWireup="true" CodeFile="Process.aspx.cs"
+    Inherits="Maintenance_DocumentType_Process" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainColumn" runat="Server">
+    <telerik:RadProgressManager ID="RadProgressManager1" runat="server" />
+    <telerik:RadProgressArea ID="RadProgressArea1" runat="server" Width="100%" SkinID="Telerik"
+        ProgressIndicators="FilesCountBar,FilesCountPercent,SelectedFilesCount">
+        <Localization UploadedFiles="Progress: " TotalFiles=", Total pages: " />
+    </telerik:RadProgressArea>
+    <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick1" Interval="1000">
+    </asp:Timer>
+    <telerik:RadWindow ID="RadWindow1" runat="server" Behaviors="Close,Move,Resize,Maximize"
+        Width="600px" Height="510px" VisibleStatusbar="false" Modal="True">
+    </telerik:RadWindow>
+    <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+        <AjaxSettings>
+            <telerik:AjaxSetting AjaxControlID="Timer1">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="RadProgressManager1" />
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+        </AjaxSettings>
+    </telerik:RadAjaxManager>
+    <telerik:RadCodeBlock ID="RadCodeBlock3" runat="server">
+        <script type="text/javascript">
+
+            function GetRadWindow() {
+                var oWindow = null;
+                if (window.radWindow)
+                    oWindow = window.radWindow;
+                else if (window.frameElement.radWindow)
+                    oWindow = window.frameElement.radWindow;
+                return oWindow;
+            }
+
+
+            function ResizeAndClose(width, height) {
+                GetRadWindow().setSize(width, height);
+                setTimeout('GetRadWindow().close()', 1200);
+                GetRadWindow().BrowserWindow.UpdateParentPage(null);
+            }
+
+            function GoToVerification(setId, width, height) {
+                GetRadWindow().setSize(width, height);
+                setTimeout('GetRadWindow().close()', 1200);
+                GetRadWindow().BrowserWindow.UpdateParentPage(setId);
+            }     
+
+        </script>
+    </telerik:RadCodeBlock>
+</asp:Content>

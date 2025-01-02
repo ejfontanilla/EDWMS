@@ -1,0 +1,100 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Test_WebServices_Resale : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        ResaleWebRef.Resale webService = new ResaleWebRef.Resale();
+        ResaleWebRef.AuthenticationClass authentication = new ResaleWebRef.AuthenticationClass();
+        authentication.UserName = "ABCDEinterface";
+        authentication.Password = "abc123";
+
+        string caseNumber = "00001B14";
+        string schemeAccount = "913583120";
+        string oldLesseeCode = "14";
+        string newLesseeCode = "21";
+        string buyerAllocationScheme = "HG4";
+        string buyerEligibilityScheme = "SSC";
+        string codeRecipient = "2222";
+        string ROIC = "THY1";
+        string caseOIC = "THY1";
+        string eligibilityScheme = "FS";
+        string householdType = "H";
+        string AHGGrant = "AHG";
+        string HH2YINC = string.Empty;
+        string bankLoanAmount = "290000";
+        string ABCDELoanAmount = string.Empty;
+        string householdIncome = "004318";
+        string CAIncome = "04318";
+        DateTime applicationDate = new DateTime(2013, 12, 1);
+        DateTime appointmentDate = new DateTime(2014, 1, 9);
+        DateTime completionDate = new DateTime(2014, 2, 27);
+        DateTime cancellationDate = new DateTime(0001, 1, 1);
+        bool refreshHouseholdStructure = true;
+
+        ResaleWebRef.Personal[] personals = new ResaleWebRef.Personal[1];
+        ResaleWebRef.MonthlyIncome[] monthlyIncomeSet;
+        ResaleWebRef.Document[] documents;
+
+        personals[0] = new ResaleWebRef.Personal();
+        personals[0].Citizenship = "SC";
+        personals[0].CustomerId = "P2P2344";
+        personals[0].DateOfBirth = new DateTime(2009, 11, 11);
+        personals[0].EmploymentStatus = string.Empty;
+        personals[0].IdType = string.Empty;
+        personals[0].IsDeletion = false;
+        personals[0].IsMainApplicant = true;
+        personals[0].MaritalStatus = "M";
+        personals[0].Name = "JOHN WALL";
+        personals[0].Nric = "S0054264D";
+        personals[0].NumberOfIncomeMonths = 3;
+        personals[0].PersonalType = "BU";
+        personals[0].Relationship = "20";
+        personals[0].EmploymentStatus = "2";
+
+        monthlyIncomeSet = new ResaleWebRef.MonthlyIncome[3];
+        monthlyIncomeSet[0] = new ResaleWebRef.MonthlyIncome();
+        monthlyIncomeSet[0].YearMonth = "201312";
+        monthlyIncomeSet[0].Amount = 22100;
+
+        monthlyIncomeSet[1] = new ResaleWebRef.MonthlyIncome();
+        monthlyIncomeSet[1].YearMonth = "201401";
+        monthlyIncomeSet[1].Amount = 22100;
+
+        monthlyIncomeSet[2] = new ResaleWebRef.MonthlyIncome();
+        monthlyIncomeSet[2].YearMonth = "201402";
+        monthlyIncomeSet[2].Amount = 22100;
+
+        personals[0].MonthlyIncomeSet = monthlyIncomeSet;
+
+        documents = new ResaleWebRef.Document[1];
+        documents[0] = new ResaleWebRef.Document();
+        documents[0].Category = "OCC-APP-SPOUSE";
+        documents[0].CategoryDate = "0001-01-01";
+        documents[0].CategoryGroup = "01";
+        documents[0].Date = "0001-01-01";
+        documents[0].DocumentTypeCode = "000004";
+        documents[0].DocumentTypeSubCode = "00";
+        documents[0].Status = "PEN";
+
+        personals[0].Documents = documents;
+
+        int numberOfPersonalsAffected = webService.ResaleHouseholdInfo(authentication,
+            caseNumber, schemeAccount, oldLesseeCode, newLesseeCode, buyerAllocationScheme, buyerEligibilityScheme, codeRecipient, ROIC, caseOIC,
+            eligibilityScheme, householdType, AHGGrant, HH2YINC, bankLoanAmount, ABCDELoanAmount, householdIncome, CAIncome, applicationDate,
+            appointmentDate, completionDate, cancellationDate, refreshHouseholdStructure, personals);
+
+        Label1.Text = numberOfPersonalsAffected.ToString();
+
+    }
+}

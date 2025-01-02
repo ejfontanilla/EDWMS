@@ -1,0 +1,275 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Test_WebServices_Sales : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        SalesWebRef.Sales webService = new SalesWebRef.Sales();
+        SalesWebRef.AuthenticationClass authentication = new SalesWebRef.AuthenticationClass();
+        authentication.UserName = "ABCDEinterface";
+        authentication.Password = "abc123";
+
+        string refNumber = "2505505E";
+        string status = "N";
+        string ballotQuarter = "201107";
+        string householdType = "G";
+        string allocationMode = "BTO";
+        string allocationScheme = "PA";
+        string eligibilityScheme = "PA";
+        string householdIncome = "01920";
+        string flatType = "5";
+        string AHGStatus = string.Empty;
+        string SHGStatus = string.Empty;
+        string loanTag = "N";
+        string bookedAddress = " BLK  987B BUANGKOK GREEN                  #11-  27    SINGAPORE 532987";
+        string flatDesign = string.Empty;
+        string contactNumbers = "96916877";
+        string affectedSERS = "708400016";
+        string OIC1 = "NRD1";
+        string OIC2 = "EO1";
+        DateTime acceptanceDate = new DateTime(2005, 1, 1);
+        DateTime applicationDate = new DateTime(2008, 1, 1);
+        DateTime keyIssueDate = new DateTime(2008, 3, 3);
+        DateTime cancelledDate = new DateTime(2008, 5, 5);      
+        bool refreshHouseholdStructure = true;
+        string ABCDERefNumber = "N12N45111";
+
+        SalesWebRef.Personal[] personals = new SalesWebRef.Personal[2];
+        SalesWebRef.MonthlyIncome[] monthlyIncomeSet;
+        SalesWebRef.Document[] documents;
+
+        personals[0] = new SalesWebRef.Personal();
+        personals[0].IsDeletion = false;
+        personals[0].PersonalType = "HA";
+        personals[0].CustomerId = "PC201747D";
+        personals[0].IsMainApplicant = true;
+        personals[0].Nric = "S1526264H";
+        personals[0].Name = "CHIA YING WAH";
+        personals[0].MaritalStatus = "M";
+        personals[0].DateOfBirth = new DateTime(1962, 6, 8);
+        personals[0].Relationship = "00";
+        personals[0].Citizenship = "10";                             
+        personals[0].IsMCPS = false;
+        personals[0].IsPPO = false;
+        personals[0].NRICSOC = string.Empty;        
+        personals[0].NameSOC = string.Empty;                
+        personals[0].NumberOfIncomeMonths = 3;                
+        //personals[0].EmploymentStatus = "2";
+
+        monthlyIncomeSet = new SalesWebRef.MonthlyIncome[3];
+        monthlyIncomeSet[0] = new SalesWebRef.MonthlyIncome();
+        monthlyIncomeSet[0].YearMonth = "201107";
+        monthlyIncomeSet[0].Amount = 1920;
+
+        monthlyIncomeSet[1] = new SalesWebRef.MonthlyIncome();
+        monthlyIncomeSet[1].YearMonth = "201108";
+        monthlyIncomeSet[1].Amount = 1920;
+
+        monthlyIncomeSet[2] = new SalesWebRef.MonthlyIncome();
+        monthlyIncomeSet[2].YearMonth = "201109";
+        monthlyIncomeSet[2].Amount = 1920;
+
+        personals[0].MonthlyIncomeSet = monthlyIncomeSet;
+
+        documents = new SalesWebRef.Document[12];
+        documents[0] = new SalesWebRef.Document();
+        documents[0].DocumentTypeCode = "000001";
+        documents[0].DocumentTypeSubCode = "00";
+        documents[0].Category = string.Empty;
+        documents[0].CategoryGroup = string.Empty;
+        documents[0].CategoryDate = string.Empty;
+        documents[0].Date = string.Empty;
+        documents[0].Status = "YR";
+        personals[0].Documents = documents;
+
+        documents[1] = new SalesWebRef.Document();
+        documents[1].DocumentTypeCode = "000016";
+        documents[1].DocumentTypeSubCode = "00";
+        documents[1].Category = string.Empty;
+        documents[1].CategoryGroup = string.Empty;
+        documents[1].CategoryDate = string.Empty;
+        documents[1].Date = string.Empty;
+        documents[1].Status = "YR";
+        personals[0].Documents = documents;
+
+        documents[2] = new SalesWebRef.Document();
+        documents[2].DocumentTypeCode = "000023";
+        documents[2].DocumentTypeSubCode = "00";
+        documents[2].Category = string.Empty;
+        documents[2].CategoryGroup = string.Empty;
+        documents[2].CategoryDate = string.Empty;
+        documents[2].Date = "01/07/2011";
+        documents[2].Status = "YR";
+        personals[0].Documents = documents;
+
+        documents[3] = new SalesWebRef.Document();
+        documents[3].DocumentTypeCode = "000023";
+        documents[3].DocumentTypeSubCode = "00";
+        documents[3].Category = string.Empty;
+        documents[3].CategoryGroup = string.Empty;
+        documents[3].CategoryDate = string.Empty;
+        documents[3].Date = "01/08/2011";
+        documents[3].Status = "YR";
+        personals[0].Documents = documents;
+
+
+        documents[4] = new SalesWebRef.Document();
+        documents[4].DocumentTypeCode = "000023";
+        documents[4].DocumentTypeSubCode = "00";
+        documents[4].Category = string.Empty;
+        documents[4].CategoryGroup = string.Empty;
+        documents[4].CategoryDate = string.Empty;
+        documents[4].Date = "01/09/2011";
+        documents[4].Status = "YR";
+        personals[0].Documents = documents;
+
+
+        documents[5] = new SalesWebRef.Document();
+        documents[5].DocumentTypeCode = "000023";
+        documents[5].DocumentTypeSubCode = "00";
+        documents[5].Category = string.Empty;
+        documents[5].CategoryGroup = string.Empty;
+        documents[5].CategoryDate = string.Empty;
+        documents[5].Date = "01/10/2011";
+        documents[5].Status = "YR";
+        personals[0].Documents = documents;
+
+
+        documents[6] = new SalesWebRef.Document();
+        documents[6].DocumentTypeCode = "000023";
+        documents[6].DocumentTypeSubCode = "00";
+        documents[6].Category = string.Empty;
+        documents[6].CategoryGroup = string.Empty;
+        documents[6].CategoryDate = string.Empty;
+        documents[6].Date = "01/11/2011";
+        documents[6].Status = "YR";
+        personals[0].Documents = documents;
+
+
+        documents[7] = new SalesWebRef.Document();
+        documents[7].DocumentTypeCode = "000023";
+        documents[7].DocumentTypeSubCode = "00";
+        documents[7].Category = string.Empty;
+        documents[7].CategoryGroup = string.Empty;
+        documents[7].CategoryDate = string.Empty;
+        documents[7].Date = "01/12/2011";
+        documents[7].Status = "YR";
+        personals[0].Documents = documents;
+
+
+        documents[8] = new SalesWebRef.Document();
+        documents[8].DocumentTypeCode = "000043";
+        documents[8].DocumentTypeSubCode = "00";
+        documents[8].Category = string.Empty;
+        documents[8].CategoryGroup = string.Empty;
+        documents[8].CategoryDate = string.Empty;
+        documents[8].Date = string.Empty;
+        documents[8].Status = "YR";
+        personals[0].Documents = documents;
+
+
+        documents[9] = new SalesWebRef.Document();
+        documents[9].DocumentTypeCode = "000096";
+        documents[9].DocumentTypeSubCode = "00";
+        documents[9].Category = string.Empty;
+        documents[9].CategoryGroup = string.Empty;
+        documents[9].CategoryDate = string.Empty;
+        documents[9].Date = string.Empty;
+        documents[9].Status = "YR";
+        personals[0].Documents = documents;
+
+
+        documents[10] = new SalesWebRef.Document();
+        documents[10].DocumentTypeCode = "000086";
+        documents[10].DocumentTypeSubCode = "00";
+        documents[10].Category = string.Empty;
+        documents[10].CategoryGroup = string.Empty;
+        documents[10].CategoryDate = string.Empty;
+        documents[10].Date = string.Empty;
+        documents[10].Status = "YR";
+        personals[0].Documents = documents;
+
+        documents[11] = new SalesWebRef.Document();
+        documents[11].DocumentTypeCode = "000059";
+        documents[11].DocumentTypeSubCode = "00";
+        documents[11].Category = string.Empty;
+        documents[11].CategoryGroup = string.Empty;
+        documents[11].CategoryDate = string.Empty;
+        documents[11].Date = string.Empty;
+        documents[11].Status = "YR";
+        personals[0].Documents = documents;
+
+
+        personals[1] = new SalesWebRef.Personal();
+        personals[1].IsDeletion = false;
+        personals[1].PersonalType = "HA";
+        personals[1].CustomerId = "PC690247B";
+        personals[1].IsMainApplicant = false;
+        personals[1].Nric = "S2622897B";
+        personals[1].Name = "KIM LEE ANN";
+        personals[1].MaritalStatus = "M";
+        personals[1].DateOfBirth = new DateTime(1963, 6, 8);
+        personals[1].Relationship = "20";
+        personals[1].Citizenship = "10";
+        personals[1].IsMCPS = false;
+        personals[1].IsPPO = false;
+        personals[1].NRICSOC = string.Empty;
+        personals[1].NameSOC = string.Empty;
+        personals[1].NumberOfIncomeMonths = 0;
+        //personals[0].EmploymentStatus = "2";
+
+        monthlyIncomeSet = new SalesWebRef.MonthlyIncome[3];
+        monthlyIncomeSet[0] = new SalesWebRef.MonthlyIncome();
+        monthlyIncomeSet[0].YearMonth = "201107";
+        monthlyIncomeSet[0].Amount = 0;
+
+        monthlyIncomeSet[1] = new SalesWebRef.MonthlyIncome();
+        monthlyIncomeSet[1].YearMonth = "201108";
+        monthlyIncomeSet[1].Amount = 0;
+
+        monthlyIncomeSet[2] = new SalesWebRef.MonthlyIncome();
+        monthlyIncomeSet[2].YearMonth = "201109";
+        monthlyIncomeSet[2].Amount = 0;
+
+        personals[1].MonthlyIncomeSet = monthlyIncomeSet;
+
+        documents = new SalesWebRef.Document[2];
+        documents[0] = new SalesWebRef.Document();
+        documents[0].DocumentTypeCode = "000001";
+        documents[0].DocumentTypeSubCode = "00";
+        documents[0].Category = string.Empty;
+        documents[0].CategoryGroup = string.Empty;
+        documents[0].CategoryDate = string.Empty;
+        documents[0].Date = string.Empty;
+        documents[0].Status = "YR";
+        personals[1].Documents = documents;
+
+        documents[1] = new SalesWebRef.Document();
+        documents[1].DocumentTypeCode = "000062";
+        documents[1].DocumentTypeSubCode = "00";
+        documents[1].Category = string.Empty;
+        documents[1].CategoryGroup = string.Empty;
+        documents[1].CategoryDate = string.Empty;
+        documents[1].Date = string.Empty;
+        documents[1].Status = "YR";
+        personals[1].Documents = documents;
+
+
+        int numberOfPersonalsAffected = webService.SalesHouseholdInfo(authentication, refNumber, status, ballotQuarter, householdType, allocationMode, allocationScheme, eligibilityScheme,
+            householdIncome, flatType, AHGStatus, SHGStatus, loanTag, bookedAddress, flatDesign, contactNumbers, affectedSERS, OIC1, OIC2, acceptanceDate, 
+            applicationDate,keyIssueDate,cancelledDate,ABCDERefNumber, refreshHouseholdStructure, personals);
+        Label1.Text = numberOfPersonalsAffected.ToString();
+
+    }
+}

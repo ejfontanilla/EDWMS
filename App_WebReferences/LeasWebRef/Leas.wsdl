@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SendHouseholdInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authentication" type="tns:AuthenticationClass" />
+            <s:element minOccurs="0" maxOccurs="1" name="refNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="applicationDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="preEligibilityOic" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="creditAccessmentOic" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="householdIncome" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="creditAccessmentIncome" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="rejectionDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="cancellationDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="approvalDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="expiryDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="secondCADate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="secondCA" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="refreshHouseholdStructure" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="personals" type="tns:ArrayOfPersonal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthenticationClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPersonal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Personal" nillable="true" type="tns:Personal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Personal">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsDeletion" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMainApplicant" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nric" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaritalStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Relationship" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MonthlyIncomeSet" type="tns:ArrayOfMonthlyIncome" />
+          <s:element minOccurs="1" maxOccurs="1" name="AnnualIncome" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AverageIncome" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployerName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmploymentDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmploymentStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="WithAllowance" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="WithCpf" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Documents" type="tns:ArrayOfDocument" />
+          <s:element minOccurs="0" maxOccurs="1" name="Citizenship" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMonthlyIncome">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MonthlyIncome" nillable="true" type="tns:MonthlyIncome" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MonthlyIncome">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="YearMonth" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Document" nillable="true" type="tns:Document" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Document">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentTypeSubCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryGroup" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendHouseholdInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendHouseholdInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SendHouseholdInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:SendHouseholdInfo" />
+  </wsdl:message>
+  <wsdl:message name="SendHouseholdInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:SendHouseholdInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LeasSoap">
+    <wsdl:operation name="SendHouseholdInfo">
+      <wsdl:input message="tns:SendHouseholdInfoSoapIn" />
+      <wsdl:output message="tns:SendHouseholdInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LeasHttpGet" />
+  <wsdl:portType name="LeasHttpPost" />
+  <wsdl:binding name="LeasSoap" type="tns:LeasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendHouseholdInfo">
+      <soap:operation soapAction="http://tempuri.org/SendHouseholdInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LeasSoap12" type="tns:LeasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendHouseholdInfo">
+      <soap12:operation soapAction="http://tempuri.org/SendHouseholdInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LeasHttpGet" type="tns:LeasHttpGet">
+    <http:binding verb="GET" />
+  </wsdl:binding>
+  <wsdl:binding name="LeasHttpPost" type="tns:LeasHttpPost">
+    <http:binding verb="POST" />
+  </wsdl:binding>
+  <wsdl:service name="Leas">
+    <wsdl:port name="LeasSoap" binding="tns:LeasSoap">
+      <soap:address location="http://heasq2/GO-DWMS/WebServices/Leas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LeasSoap12" binding="tns:LeasSoap12">
+      <soap12:address location="http://heasq2/GO-DWMS/WebServices/Leas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LeasHttpGet" binding="tns:LeasHttpGet">
+      <http:address location="http://heasq2/GO-DWMS/WebServices/Leas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LeasHttpPost" binding="tns:LeasHttpPost">
+      <http:address location="http://heasq2/GO-DWMS/WebServices/Leas.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

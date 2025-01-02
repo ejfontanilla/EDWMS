@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SendDocumentInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authentication" type="tns:AuthenticationClass" />
+            <s:element minOccurs="0" maxOccurs="1" name="acknowledgementInfo" type="tns:AcknowledgementInfoClass" />
+            <s:element minOccurs="0" maxOccurs="1" name="customers" type="tns:ArrayOfCustomerClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthenticationClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AcknowledgementInfoClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AcknowledgementNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AcknowledgementDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicantIdentityNo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomerClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomerClass" nillable="true" type="tns:CustomerClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomerClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerIdFromSource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdentityNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdentityType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocCounter" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Documents" type="tns:ArrayOfDocumentClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocumentClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentClass" nillable="true" type="tns:DocumentClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DocId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocIdSub" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocStartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DocEndDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdentityNoSub" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerIdSubFromSource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RequesterNickname" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateReceived" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageInfo" type="tns:ArrayOfImageInfoClass" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessInfoSet" type="tns:ArrayOfBusinessInfoClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfImageInfoClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ImageInfoClass" nillable="true" type="tns:ImageInfoClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ImageInfoClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ImageUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ImageSize" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateReceivedFromSource" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocChannel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CmDocumentId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAccepted" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMatchedWithExternalOrg" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateFiled" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CertificateNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CertificateDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsVerified" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocalForeign" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarriageType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonIdentityInfoSet" type="tns:ArrayOfPersonIdentityClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPersonIdentityClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PersonIdentityClass" nillable="true" type="tns:PersonIdentityClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonIdentityClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="customerIdFromSource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="identityNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="identityType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonInfoSet" type="tns:ArrayOfPersonInfoClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPersonInfoClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PersonInfoClass" nillable="true" type="tns:PersonInfoClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonInfoClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="identityNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="identityType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="customerName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBusinessInfoClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BusinessInfoClass" nillable="true" type="tns:BusinessInfoClass" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BusinessInfoClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessTransactionNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessRefNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendDocumentInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendDocumentInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SendDocumentInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:SendDocumentInfo" />
+  </wsdl:message>
+  <wsdl:message name="SendDocumentInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:SendDocumentInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CdbSoap">
+    <wsdl:operation name="SendDocumentInfo">
+      <wsdl:input message="tns:SendDocumentInfoSoapIn" />
+      <wsdl:output message="tns:SendDocumentInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CdbHttpGet" />
+  <wsdl:portType name="CdbHttpPost" />
+  <wsdl:binding name="CdbSoap" type="tns:CdbSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendDocumentInfo">
+      <soap:operation soapAction="http://tempuri.org/SendDocumentInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CdbSoap12" type="tns:CdbSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendDocumentInfo">
+      <soap12:operation soapAction="http://tempuri.org/SendDocumentInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CdbHttpGet" type="tns:CdbHttpGet">
+    <http:binding verb="GET" />
+  </wsdl:binding>
+  <wsdl:binding name="CdbHttpPost" type="tns:CdbHttpPost">
+    <http:binding verb="POST" />
+  </wsdl:binding>
+  <wsdl:service name="Cdb">
+    <wsdl:port name="CdbSoap" binding="tns:CdbSoap">
+      <soap:address location="http://heasq2/GO-DWMS/WebServices/Cdb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CdbSoap12" binding="tns:CdbSoap12">
+      <soap12:address location="http://heasq2/GO-DWMS/WebServices/Cdb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CdbHttpGet" binding="tns:CdbHttpGet">
+      <http:address location="http://heasq2/GO-DWMS/WebServices/Cdb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CdbHttpPost" binding="tns:CdbHttpPost">
+      <http:address location="http://heasq2/GO-DWMS/WebServices/Cdb.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

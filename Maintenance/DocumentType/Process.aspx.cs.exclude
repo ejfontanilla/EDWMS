@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Threading;
+using Telerik.Web.UI;
+using Dwms.Bll;
+
+public partial class Maintenance_DocumentType_Process : System.Web.UI.Page
+{
+    int docSetId;
+    int pageCount;
+    bool goToVerification;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        docSetId = int.Parse(Request["docSetId"]);
+        pageCount = int.Parse(Request["pageCount"]);
+        goToVerification = bool.Parse(Request["goToVerification"]);
+    }
+
+    protected void Timer1_Tick1(object sender, EventArgs e)
+    {
+        RawPageDb rawPageDb = new RawPageDb();
+        int ocrPageCount = rawPageDb.CountOcrPagesBySet(docSetId);
+
+        if (ocrPageCount == pageCount)
+        {
+            Timer1.Enabled = false;
+
+            if (goToVerification)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "GoToVerification", "GoToVerification('" +
+                    docSetId + "', 600, 190);", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "ResizeAndClose", "ResizeAndClose(600, 190);", true);
+            }
+        }
+        else
+        {
+            if (pageCount > 0)
+            {
+                ocrPageCount = 5; // Dummy value, please remove
+                int percent = (int)(((double)ocrPageCount / (double)pageCount) * 100);
+                RadProgressContext progress = RadProgressContext.Current;
+                progress.SecondaryTotal = pageCount;
+                progress.SecondaryValue = percent;
+                progress.SecondaryPercent = percent;
+                // progress.TimeElapsed = datetime;
+            }
+        }
+    }
+}

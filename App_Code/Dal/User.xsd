@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="User" targetNamespace="http://tempuri.org/Users.xsd" xmlns:mstns="http://tempuri.org/Users.xsd" xmlns="http://tempuri.org/Users.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ASPNETDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ASPNETDBConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ASPNETDBConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UserTableAdapter" GeneratorDataComponentClassName="UserTableAdapter" Name="User" UserDataComponentName="UserTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetUsers" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetUsers" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetUsers" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                         aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                         Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved, Profile.Team
+FROM            aspnet_Roles INNER JOIN
+                         aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                         aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                         Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                         aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                         Section ON Profile.Section = Section.Id INNER JOIN
+                         Department ON Department.Id = Section.Department
+WHERE        (aspnet_Users.UserName &lt;&gt; 'SYSTEM')
+ORDER BY Profile.Name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RoleName" DataSetColumn="RoleName" />
+              <Mapping SourceColumn="UserId" DataSetColumn="UserId" />
+              <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Designation" DataSetColumn="Designation" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="Section" DataSetColumn="Section" />
+              <Mapping SourceColumn="SectionName" DataSetColumn="SectionName" />
+              <Mapping SourceColumn="SectionCode" DataSetColumn="SectionCode" />
+              <Mapping SourceColumn="DepartmentName" DataSetColumn="DepartmentName" />
+              <Mapping SourceColumn="DepartmentCode" DataSetColumn="DepartmentCode" />
+              <Mapping SourceColumn="BusinessCode" DataSetColumn="BusinessCode" />
+              <Mapping SourceColumn="RoleId" DataSetColumn="RoleId" />
+              <Mapping SourceColumn="IsApproved" DataSetColumn="IsApproved" />
+              <Mapping SourceColumn="Team" DataSetColumn="Team" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetAdminUsers" GetMethodModifier="Public" GetMethodName="GetAdminUsers" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAdminUsers" UserSourceName="GetAdminUsers">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                         aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Department.Name AS DepartmentName, 
+                         aspnet_Roles.RoleId, aspnet_Membership.IsApproved
+FROM            aspnet_Roles INNER JOIN
+                         aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                         aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                         Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                         aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                         Section ON Profile.Section = Section.Id INNER JOIN
+                         Department ON Department.Id = Section.Department
+WHERE        (aspnet_Roles.RoleName IN (@Role1, @Role2, @Role3, @Role4, @Role5)) AND aspnet_Users.UserName &lt;&gt; 'SYSTEM'
+ORDER BY Profile.Name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Role1" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="String" Direction="Input" ParameterName="@Role1" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Role2" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="String" Direction="Input" ParameterName="@Role2" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Role3" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="String" Direction="Input" ParameterName="@Role3" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Role4" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="String" Direction="Input" ParameterName="@Role4" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Role5" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="String" Direction="Input" ParameterName="@Role5" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByDepartment" GetMethodModifier="Public" GetMethodName="GetDataByDepartment" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByDepartment" UserSourceName="GetDataByDepartment">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                         aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                         Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved, Profile.Team
+FROM            aspnet_Roles INNER JOIN
+                         aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                         aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                         Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                         aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                         Section ON Profile.Section = Section.Id INNER JOIN
+                         Department ON Department.Id = Section.Department
+WHERE        (Department.Id = @Department) AND (aspnet_Users.UserName &lt;&gt; 'SYSTEM')
+ORDER BY Profile.Name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Department" ColumnName="Id" DataSourceName="DWMSDB.dbo.Department" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Department" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBySection" GetMethodModifier="Public" GetMethodName="GetDataBySection" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBySection" UserSourceName="GetDataBySection">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                      aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                      Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved
+FROM         aspnet_Roles INNER JOIN
+                      aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                      aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                      Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                      aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                      Section ON Profile.Section = Section.Id INNER JOIN
+                      Department ON Department.Id = Section.Department
+WHERE     (Section.Id = @Section) AND (aspnet_Users.UserName &lt;&gt; 'SYSTEM')
+ORDER BY Profile.Name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Section" ColumnName="Id" DataSourceName="DWMSDBABCDE.dbo.Section" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Section" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBySectionAndDepartment" GetMethodModifier="Public" GetMethodName="GetDataBySectionAndDepartment" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBySectionAndDepartment" UserSourceName="GetDataBySectionAndDepartment">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                         aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                         Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved
+FROM            aspnet_Roles INNER JOIN
+                         aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                         aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                         Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                         aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                         Section ON Profile.Section = Section.Id INNER JOIN
+                         Department ON Department.Id = Section.Department
+WHERE        (Section.Id = @Section) AND (Department.Id = @Department) AND  aspnet_Users.UserName &lt;&gt; 'SYSTEM'
+ORDER BY Profile.Name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Section" ColumnName="Id" DataSourceName="DWMSDBABCDE.dbo.Section" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Section" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Department" ColumnName="Id" DataSourceName="DWMSDBABCDE.dbo.Department" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Department" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetUserBySectionForAssessment" GetMethodModifier="Public" GetMethodName="GetUserBySectionForAssessment" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUserBySectionForAssessment" UserSourceName="GetUserBySectionForAssessment">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+SELECT     aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                      aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                      Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved
+FROM         aspnet_Roles INNER JOIN
+                      aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                      aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                      Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                      aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                      Section ON Profile.Section = Section.Id INNER JOIN
+                      Department ON Department.Id = Section.Department
+WHERE     (Section.Id = @Section) AND (aspnet_Users.UserName &lt;&gt; 'SYSTEM')
+and aspnet_Users.UserId in (select UserId from aspnet_UsersInRoles where RoleId in (
+select RoleId from AccessControl where Module='Income_Assessment' and HasAccess=1))
+ORDER BY Profile.Name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Section" ColumnName="Id" DataSourceName="DWMSDB.dbo.Section" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Section" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetUserBySectionForCompleteness" GetMethodModifier="Public" GetMethodName="GetUserBySectionForCompleteness" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUserBySectionForCompleteness" UserSourceName="GetUserBySectionForCompleteness">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                      aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                      Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved
+FROM         aspnet_Roles INNER JOIN
+                      aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                      aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                      Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                      aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                      Section ON Profile.Section = Section.Id INNER JOIN
+                      Department ON Department.Id = Section.Department
+WHERE     (Section.Id = @Section) AND (aspnet_Users.UserName &lt;&gt; 'SYSTEM')
+and aspnet_Users.UserId in (select UserId from aspnet_UsersInRoles where RoleId in (
+select RoleId from AccessControl where Module='Completeness' and HasAccess=1))
+ORDER BY Profile.Name
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Section" ColumnName="Id" DataSourceName="DWMSDB.dbo.Section" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Section" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetUserBySectionForVerification" GetMethodModifier="Public" GetMethodName="GetUserBySectionForVerification" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUserBySectionForVerification" UserSourceName="GetUserBySectionForVerification">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                      aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                      Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved
+FROM         aspnet_Roles INNER JOIN
+                      aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                      aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                      Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                      aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                      Section ON Profile.Section = Section.Id INNER JOIN
+                      Department ON Department.Id = Section.Department
+WHERE     (Section.Id = @Section) AND (aspnet_Users.UserName &lt;&gt; 'SYSTEM')
+and aspnet_Users.UserId in (select UserId from aspnet_UsersInRoles where RoleId in (
+select RoleId from AccessControl where Module='Verification' and HasAccess=1))
+ORDER BY Profile.Name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Section" ColumnName="Id" DataSourceName="DWMSDB.dbo.Section" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@Section" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetUserByUserId" GetMethodModifier="Public" GetMethodName="GetUserByUserId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUserByUserId" UserSourceName="GetUserByUserId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                         aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                         Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved
+FROM            aspnet_Roles INNER JOIN
+                         aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                         aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                         Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                         aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                         Section ON Profile.Section = Section.Id INNER JOIN
+                         Department ON Department.Id = Section.Department
+WHERE        (aspnet_Users.UserId = @UserId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="UserId" ColumnName="UserId" DataSourceName="DWMSDB.dbo.aspnet_Users" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetUserByUserName" GetMethodModifier="Public" GetMethodName="GetUserByUserName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUserByUserName" UserSourceName="GetUserByUserName">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                         aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                         Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved
+FROM            aspnet_Roles INNER JOIN
+                         aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                         aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                         Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                         aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                         Section ON Profile.Section = Section.Id INNER JOIN
+                         Department ON Department.Id = Section.Department
+WHERE        (aspnet_Users.UserName = @UserName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="UserName" ColumnName="UserName" DataSourceName="DWMSDB.dbo.aspnet_Users" DataTypeServer="nvarchar(256)" DbType="String" Direction="Input" ParameterName="@UserName" Precision="0" ProviderType="NVarChar" Scale="0" Size="256" SourceColumn="UserName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ASPNETDBConnectionString (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetUsersByRole" GetMethodModifier="Public" GetMethodName="GetUsersByRole" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUsersByRole" UserSourceName="GetUsersByRole">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        aspnet_Roles.RoleName, aspnet_Users.UserId, aspnet_Users.UserName, Profile.Name, ISNULL(Profile.Designation, 'N.A.') AS Designation, 
+                         aspnet_Membership.Email, Profile.Section, Section.Name AS SectionName, Section.Code AS SectionCode, Section.BusinessCode, 
+                         Department.Name AS DepartmentName, Department.Code AS DepartmentCode, aspnet_Roles.RoleId, aspnet_Membership.IsApproved
+FROM            aspnet_Roles INNER JOIN
+                         aspnet_UsersInRoles ON aspnet_Roles.RoleId = aspnet_UsersInRoles.RoleId INNER JOIN
+                         aspnet_Users ON aspnet_UsersInRoles.UserId = aspnet_Users.UserId INNER JOIN
+                         Profile ON aspnet_Users.UserId = Profile.UserId INNER JOIN
+                         aspnet_Membership ON aspnet_Users.UserId = aspnet_Membership.UserId INNER JOIN
+                         Section ON Profile.Section = Section.Id INNER JOIN
+                         Department ON Department.Id = Section.Department
+WHERE        (aspnet_Roles.RoleName = @RoleName) AND aspnet_Users.UserName &lt;&gt; 'SYSTEM'
+ORDER BY Profile.Name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="RoleName" ColumnName="RoleName" DataSourceName="DWMSDBABCDE.dbo.aspnet_Roles" DataTypeServer="nvarchar(256)" DbType="String" Direction="Input" ParameterName="@RoleName" Precision="0" ProviderType="NVarChar" Scale="0" Size="256" SourceColumn="RoleName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="User" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="User" msprop:Generator_UserDSName="User">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="User" msprop:Generator_TableClassName="UserDataTable" msprop:Generator_TableVarName="tableUser" msprop:Generator_TablePropName="_User" msprop:Generator_RowDeletingName="UserRowDeleting" msprop:Generator_UserTableName="User" msprop:Generator_RowChangingName="UserRowChanging" msprop:Generator_RowEvHandlerName="UserRowChangeEventHandler" msprop:Generator_RowDeletedName="UserRowDeleted" msprop:Generator_RowEvArgName="UserRowChangeEvent" msprop:Generator_RowChangedName="UserRowChanged" msprop:Generator_RowClassName="UserRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RoleName" msprop:Generator_ColumnVarNameInTable="columnRoleName" msprop:Generator_ColumnPropNameInRow="RoleName" msprop:Generator_ColumnPropNameInTable="RoleNameColumn" msprop:Generator_UserColumnName="RoleName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" msprop:Generator_UserColumnName="UserId" type="xs:string" />
+              <xs:element name="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_UserColumnName="UserName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Designation" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" msprop:Generator_UserColumnName="Designation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Section" msprop:Generator_ColumnVarNameInTable="columnSection" msprop:Generator_ColumnPropNameInRow="Section" msprop:Generator_ColumnPropNameInTable="SectionColumn" msprop:Generator_UserColumnName="Section" type="xs:int" />
+              <xs:element name="SectionName" msprop:Generator_ColumnVarNameInTable="columnSectionName" msprop:Generator_ColumnPropNameInRow="SectionName" msprop:Generator_ColumnPropNameInTable="SectionNameColumn" msprop:Generator_UserColumnName="SectionName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SectionCode" msprop:Generator_ColumnVarNameInTable="columnSectionCode" msprop:Generator_ColumnPropNameInRow="SectionCode" msprop:Generator_ColumnPropNameInTable="SectionCodeColumn" msprop:Generator_UserColumnName="SectionCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn" msprop:Generator_UserColumnName="DepartmentName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepartmentCode" msprop:Generator_ColumnVarNameInTable="columnDepartmentCode" msprop:Generator_ColumnPropNameInRow="DepartmentCode" msprop:Generator_ColumnPropNameInTable="DepartmentCodeColumn" msprop:Generator_UserColumnName="DepartmentCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BusinessCode" msprop:Generator_ColumnVarNameInTable="columnBusinessCode" msprop:Generator_ColumnPropNameInRow="BusinessCode" msprop:Generator_ColumnPropNameInTable="BusinessCodeColumn" msprop:Generator_UserColumnName="BusinessCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RoleId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnRoleId" msprop:Generator_ColumnPropNameInRow="RoleId" msprop:Generator_ColumnPropNameInTable="RoleIdColumn" msprop:Generator_UserColumnName="RoleId" type="xs:string" />
+              <xs:element name="IsApproved" msprop:Generator_ColumnVarNameInTable="columnIsApproved" msprop:Generator_ColumnPropNameInRow="IsApproved" msprop:Generator_ColumnPropNameInTable="IsApprovedColumn" msprop:Generator_UserColumnName="IsApproved" type="xs:boolean" />
+              <xs:element name="Team" msprop:Generator_ColumnVarNameInTable="columnTeam" msprop:Generator_ColumnPropNameInRow="Team" msprop:Generator_ColumnPropNameInTable="TeamColumn" msprop:Generator_UserColumnName="Team" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

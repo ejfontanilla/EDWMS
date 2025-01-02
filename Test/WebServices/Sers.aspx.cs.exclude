@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Test_WebServices_Sers : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        SersWebRef.Sers webService = new SersWebRef.Sers();
+        SersWebRef.AuthenticationClass authentication = new SersWebRef.AuthenticationClass();
+        authentication.UserName = "ABCDEinterface";
+        authentication.Password = "abc123";
+
+        string refNumber = "750300011";
+        string registrationNumber = "999";
+        string stage = "RGN";
+        string block = "11";
+        string street = "REDHILL CL";
+        string level = "03";
+        string unitNumber = "112";
+        string postalCode = "151011";
+        string allocationScheme = "SFL";
+        string eligibilityScheme = "PA";
+        DateTime surrenderDate = new DateTime(2008, 5, 5);   
+        string OIC1 = "OHL1";
+        string OIC2 = "THE1";
+        bool refreshHouseholdStructure = true;
+
+        SersWebRef.Personal[] personals = new SersWebRef.Personal[1];
+        //SersWebRef.MonthlyIncome[] monthlyIncomeSet;
+        //SersWebRef.Document[] documents;
+
+        personals[0] = new SersWebRef.Personal();
+        personals[0].Citizenship = string.Empty;
+        personals[0].CustomerId = string.Empty;
+        personals[0].DateOfBirth = new DateTime(0001, 1, 1);
+        personals[0].IsDeletion = false;
+        personals[0].IsMainApplicant = false;
+        personals[0].MaritalStatus = "M";
+        personals[0].Name = "SHAWN MARION";        
+        personals[0].Nric = "S7137611Z";                
+        personals[0].PersonalType = "HA";
+        personals[0].Relationship = "20";        
+
+        //monthlyIncomeSet = new SalesWebRef.MonthlyIncome[3];
+        //monthlyIncomeSet[0] = new SalesWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201111";
+        //monthlyIncomeSet[0].Amount = 5100;
+
+        //monthlyIncomeSet[1] = new SalesWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201112";
+        //monthlyIncomeSet[1].Amount = 6100;
+
+        //monthlyIncomeSet[2] = new SalesWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201201";
+        //monthlyIncomeSet[2].Amount = 7100;
+
+        //personals[0].MonthlyIncomeSet = monthlyIncomeSet;
+
+        //documents = new SalesWebRef.Document[1];
+        //documents[0] = new SalesWebRef.Document();
+        //documents[0].Category = "OCC-APP-SPOUSE";
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].CategoryGroup = "01";
+        //documents[0].Date = "0001-01-01";
+        //documents[0].DocumentTypeCode = "000004";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Status = "PEN";
+
+        //personals[0].Documents = documents;
+
+        int numberOfPersonalsAffected = webService.SersHouseholdInfo(authentication, refNumber, registrationNumber, stage, block, street,
+            level, unitNumber, postalCode, allocationScheme, eligibilityScheme, OIC1, OIC2, surrenderDate, refreshHouseholdStructure, personals);
+            
+        Label1.Text = numberOfPersonalsAffected.ToString();
+
+    }
+}

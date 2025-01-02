@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://service.bp27.ABCDE.com.ph/" targetNamespace="http://service.bp27.ABCDE.com.ph/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="fileDocument" type="tns:fileDocument" />
+  <xs:element name="fileDocumentResponse" type="tns:fileDocumentResponse" />
+  <xs:complexType name="fileDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:BP27JInputDocumentDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BP27JInputDocumentDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="files" nillable="true" type="tns:file" />
+      <xs:element minOccurs="0" name="hleNo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="file">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="docType" type="xs:string" />
+      <xs:element minOccurs="0" name="encodedFileBytes" type="xs:string" />
+      <xs:element minOccurs="0" name="fileName" type="xs:string" />
+      <xs:element minOccurs="0" name="mimeType" type="xs:string" />
+      <xs:element minOccurs="0" name="nric" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="fileDocumentResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,1617 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Dwms.Bll;
+
+public partial class Test_WebServices_Leas : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        // Before we can use LeasWebRef, a web reference must be added under the App_WebReferences folder of the ASP.NET website.
+        LeasWebRef.Leas webService = new LeasWebRef.Leas();
+
+        // Set authentication header. This header optional for now and will be turned on in the future to enhance security
+        LeasWebRef.AuthenticationClass authentication = new LeasWebRef.AuthenticationClass();
+        authentication.UserName = "ABCDEinterface";
+        authentication.Password = "abc123";
+
+        // Prepare parameters to pass to web service
+        string refNumber = "N15F34113"; //T14T05188
+        DateTime applicationDate = new DateTime(2012, 9, 17);
+        string status = "PP";
+        string preEligibilityOic = "KAY9";
+        string creditAccessmentOic = string.Empty;
+        decimal creditAccessmentIncome = 0;
+        decimal householdIncome = 0;
+        DateTime rejectionDate = new DateTime(0001, 1, 1);
+        DateTime cancellationDate = new DateTime(0001, 1, 1);
+        DateTime approvalDate = new DateTime(0001, 1, 1);
+        DateTime expiryDate = new DateTime(0001, 1, 1);
+        DateTime secondCADate = new DateTime(2014, 10, 27);
+        bool secondCA = true;
+        bool refreshHouseholdStructure = false;
+        string risk = "H";
+
+        // Prepare list of personals and documents to pass to web service
+        LeasWebRef.Personal[] personals = new LeasWebRef.Personal[4];        
+        LeasWebRef.MonthlyIncome[] monthlyIncomeSet;
+        LeasWebRef.Document[] documents;
+
+        #region Personal 1
+
+        //personals[0] = new LeasWebRef.Personal();
+        //personals[0].IsDeletion = false;
+        //personals[0].PersonalType = "HA";
+        //personals[0].CustomerId = "PE499908H";
+        //personals[0].IsMainApplicant = true;
+        //personals[0].Nric = "S0061120D";
+        //personals[0].Name = "ANDREW WIGGINS";
+        //personals[0].MaritalStatus = "D";
+        //personals[0].DateOfBirth = new DateTime(1981, 8, 24);
+        //personals[0].Relationship = "00";
+        //personals[0].AnnualIncome = 0.00m;
+        //personals[0].AverageIncome = 3545.00m;
+        //personals[0].EmployerName = "CAPITALAND LIMITED";
+        //personals[0].EmploymentDate = new DateTime(2008, 4, 1);
+        //personals[0].EmploymentStatus = "3";
+        //personals[0].WithAllowance = false;
+        //personals[0].WithCpf = true;
+        //personals[0].Citizenship = "10";
+        ////personals[0].NumberOfIncomeMonths = 3;
+
+        //monthlyIncomeSet = new LeasWebRef.MonthlyIncome[3];
+        //monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201311";
+        //monthlyIncomeSet[0].Amount = 3545;
+
+        //monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201312";
+        //monthlyIncomeSet[1].Amount = 3545;
+
+        //monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201401";
+        //monthlyIncomeSet[2].Amount = 3545;       
+
+        //personals[0].MonthlyIncomeSet = monthlyIncomeSet;
+
+        //documents = new LeasWebRef.Document[4];
+
+        //for (int i = 0; i < documents.Length; i++)
+        //{
+        //    documents[i] = new LeasWebRef.Document();
+        //}
+
+        //documents[0].DocumentTypeCode = "000023";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "APP-EMPL-CPF";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "2013-11-01";
+        //documents[0].Status = "REC";
+
+        //documents[0].DocumentTypeCode = "000023";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "APP-EMPL-CPF";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "2013-12-01";
+        //documents[0].Status = "REC";
+
+        //documents[0].DocumentTypeCode = "000023";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "APP-EMPL-CPF";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "2014-01-01";
+        //documents[0].Status = "REC";
+
+        //documents[0].DocumentTypeCode = "000027";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "APP-EMPL-CPF";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "0001-01-01";
+        //documents[0].Status = "REC";
+
+        //personals[0].Documents = documents;
+
+#endregion
+
+        #region personal 2
+
+        //personals[1] = new LeasWebRef.Personal();
+        //personals[1].IsDeletion = false;
+        //personals[1].PersonalType = "OC";
+        //personals[1].CustomerId = "PE642563A";
+        //personals[1].IsMainApplicant = false;
+        //personals[1].Nric = "S0061576E";
+        //personals[1].Name = "MARCUS SMART";
+        //personals[1].MaritalStatus = "S";
+        //personals[1].DateOfBirth = new DateTime(2007, 8, 1);
+        //personals[1].Relationship = "41";
+        //personals[1].AnnualIncome = 0.00m;
+        //personals[1].AverageIncome = 0.00m;
+        //personals[1].EmployerName = string.Empty;
+        //personals[1].EmploymentDate = new DateTime(0001, 1, 1);
+        //personals[1].EmploymentStatus = "1";
+        //personals[1].WithAllowance = false;
+        //personals[1].WithCpf = false;
+        //personals[1].Citizenship = "10";
+        ////personals[1].NumberOfIncomeMonths = 3;
+
+        //monthlyIncomeSet = new LeasWebRef.MonthlyIncome[3];
+        //monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201311";
+        //monthlyIncomeSet[0].Amount = 0;
+
+        //monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201312";
+        //monthlyIncomeSet[1].Amount = 0;
+
+        //monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201401";
+        //monthlyIncomeSet[2].Amount = 0;
+
+        //personals[1].MonthlyIncomeSet = monthlyIncomeSet;
+
+        //// Personal 1's documents
+        //documents = new LeasWebRef.Document[1];
+
+        //for (int i = 0; i < documents.Length; i++)
+        //{
+        //    documents[i] = new LeasWebRef.Document();
+        //}
+
+        //documents[0].DocumentTypeCode = "000007";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "OCC-UNEMPL-STU";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "0001-01-01";
+        //documents[0].Status = "REC";        
+        
+        //personals[1].Documents = documents;
+
+#endregion
+
+        #region personal 3
+
+        //personals[0] = new LeasWebRef.Personal();
+        //personals[0].IsDeletion = false;
+        //personals[0].PersonalType = "HA";
+        //personals[0].CustomerId = "PB672332B";
+        //personals[0].IsMainApplicant = true;
+        //personals[0].Nric = "S0900990F";
+        //personals[0].Name = "GHAYATHRI D/O K SELVAKUMARAN";
+        //personals[0].MaritalStatus = "M";
+        //personals[0].DateOfBirth = new DateTime(2009, 7, 29);
+        //personals[0].Relationship = "41";
+        //personals[0].AnnualIncome = 0.00m;
+        //personals[0].AverageIncome = 0.00m;
+        //personals[0].EmployerName = string.Empty;
+        //personals[0].EmploymentDate = new DateTime(0001, 1, 1);
+        //personals[0].EmploymentStatus = "2";
+        //personals[0].WithAllowance = false;
+        //personals[0].WithCpf = false;
+        //personals[0].Citizenship = "10";
+        //personals[0].NumberOfIncomeMonths = 3;
+
+
+        //monthlyIncomeSet = new LeasWebRef.MonthlyIncome[3];
+        //monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201311";
+        //monthlyIncomeSet[0].Amount = 0;
+
+        //monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201312";
+        //monthlyIncomeSet[1].Amount = 0;
+
+        //monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201401";
+        //monthlyIncomeSet[2].Amount = 0;
+
+        //personals[0].MonthlyIncomeSet = monthlyIncomeSet;
+
+        //documents = new LeasWebRef.Document[1];
+
+        //for (int i = 0; i < documents.Length; i++)
+        //{
+        //    documents[i] = new LeasWebRef.Document();
+        //}
+
+        //documents[0].DocumentTypeCode = "000007";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "OCC-UNEMPL-STU";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "0001-01-01";
+        //documents[0].Status = "REC";
+
+        //personals[0].Documents = documents;
+
+
+
+        //personals[1] = new LeasWebRef.Personal();
+        //personals[1].IsDeletion = false;
+        //personals[1].PersonalType = "HA";
+        //personals[1].CustomerId = "PZ650795F";
+        //personals[1].IsMainApplicant = true;
+        //personals[1].Nric = "S0957585E";
+        //personals[1].Name = "TESTING NAME";
+        //personals[1].MaritalStatus = "M";
+        //personals[1].DateOfBirth = new DateTime(1981, 7, 3);
+        //personals[1].Relationship = "20";
+        //personals[1].AnnualIncome = 0.00m;
+        //personals[1].AverageIncome = 0.00m;
+        //personals[1].EmployerName = string.Empty;
+        //personals[1].EmploymentDate = new DateTime(0001, 1, 1);
+        //personals[1].EmploymentStatus = "2";
+        //personals[1].WithAllowance = false;
+        //personals[1].WithCpf = false;
+        //personals[1].Citizenship = "10";
+        //personals[1].NumberOfIncomeMonths = 3;
+
+
+        //monthlyIncomeSet = new LeasWebRef.MonthlyIncome[3];
+        //monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201311";
+        //monthlyIncomeSet[0].Amount = 0;
+
+        //monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201312";
+        //monthlyIncomeSet[1].Amount = 0;
+
+        //monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201401";
+        //monthlyIncomeSet[2].Amount = 0;
+
+        //personals[1].MonthlyIncomeSet = monthlyIncomeSet;
+
+        //documents = new LeasWebRef.Document[1];
+
+        //for (int i = 0; i < documents.Length; i++)
+        //{
+        //    documents[i] = new LeasWebRef.Document();
+        //}
+
+        //documents[0].DocumentTypeCode = "000007";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "OCC-UNEMPL-STU";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "0001-01-01";
+        //documents[0].Status = "REC";
+
+        //personals[1].Documents = documents;
+
+
+        //personals[2] = new LeasWebRef.Personal();
+        //personals[2].IsDeletion = false;
+        //personals[2].PersonalType = "OC";
+        //personals[2].CustomerId = "PZ650833B";
+        //personals[2].IsMainApplicant = false;
+        //personals[2].Nric = "S0647099H";
+        //personals[2].Name = "TESTING NAME";
+        //personals[2].MaritalStatus = "D";
+        //personals[2].DateOfBirth = new DateTime(1952, 2, 9);
+        //personals[2].Relationship = "32";
+        //personals[2].AnnualIncome = 0.00m;
+        //personals[2].AverageIncome = 0.00m;
+        //personals[2].EmployerName = string.Empty;
+        //personals[2].EmploymentDate = new DateTime(0001, 1, 1);
+        //personals[2].EmploymentStatus = "1";
+        //personals[2].WithAllowance = false;
+        //personals[2].WithCpf = false;
+        //personals[2].Citizenship = "10";
+        //personals[2].NumberOfIncomeMonths = 3;
+
+        //monthlyIncomeSet = new LeasWebRef.MonthlyIncome[3];
+        //monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201311";
+        //monthlyIncomeSet[0].Amount = 0;
+
+        //monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201312";
+        //monthlyIncomeSet[1].Amount = 0;
+
+        //monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201401";
+        //monthlyIncomeSet[2].Amount = 0;
+
+        //personals[2].MonthlyIncomeSet = monthlyIncomeSet;
+
+        //// Personal 1's documents
+        //documents = new LeasWebRef.Document[1];
+
+        //for (int i = 0; i < documents.Length; i++)
+        //{
+        //    documents[i] = new LeasWebRef.Document();
+        //}
+
+        //documents[0].DocumentTypeCode = "000007";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "OCC-UNEMPL-STU";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "0001-01-01";
+        //documents[0].Status = "REC";
+
+        //personals[2].Documents = documents;
+
+
+
+        //personals[3] = new LeasWebRef.Personal();
+        //personals[3].IsDeletion = false;
+        //personals[3].PersonalType = "OC";
+        //personals[3].CustomerId = "PZ650809Z";
+        //personals[3].IsMainApplicant = false;
+        //personals[3].Nric = "T0637784F";
+        //personals[3].Name = "TESTING NAME";
+        //personals[3].MaritalStatus = "D";
+        //personals[3].DateOfBirth = new DateTime(2006, 12, 26);
+        //personals[3].Relationship = "41";
+        //personals[3].AnnualIncome = 0.00m;
+        //personals[3].AverageIncome = 0.00m;
+        //personals[3].EmployerName = string.Empty;
+        //personals[3].EmploymentDate = new DateTime(0001, 1, 1);
+        //personals[3].EmploymentStatus = "1";
+        //personals[3].WithAllowance = false;
+        //personals[3].WithCpf = false;
+        //personals[3].Citizenship = "10";
+        //personals[3].NumberOfIncomeMonths = 3;
+
+        //monthlyIncomeSet = new LeasWebRef.MonthlyIncome[3];
+        //monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201311";
+        //monthlyIncomeSet[0].Amount = 0;
+
+        //monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201312";
+        //monthlyIncomeSet[1].Amount = 0;
+
+        //monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201401";
+        //monthlyIncomeSet[2].Amount = 0;
+
+        //personals[3].MonthlyIncomeSet = monthlyIncomeSet;
+
+        //// Personal 1's documents
+        //documents = new LeasWebRef.Document[1];
+
+        //for (int i = 0; i < documents.Length; i++)
+        //{
+        //    documents[i] = new LeasWebRef.Document();
+        //}
+
+        //documents[0].DocumentTypeCode = "000007";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "OCC-UNEMPL-STU";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "0001-01-01";
+        //documents[0].Status = "REC";
+
+        //personals[3].Documents = documents;
+
+
+        //personals[4] = new LeasWebRef.Personal();
+        //personals[4].IsDeletion = false;
+        //personals[4].PersonalType = "OC";
+        //personals[4].CustomerId = "PZ650834J";
+        //personals[4].IsMainApplicant = false;
+        //personals[4].Nric = "T0807992C";
+        //personals[4].Name = "TESTING NAME";
+        //personals[4].MaritalStatus = "D";
+        //personals[4].DateOfBirth = new DateTime(2006, 3, 4);
+        //personals[4].Relationship = "41";
+        //personals[4].AnnualIncome = 0.00m;
+        //personals[4].AverageIncome = 0.00m;
+        //personals[4].EmployerName = string.Empty;
+        //personals[4].EmploymentDate = new DateTime(0001, 1, 1);
+        //personals[4].EmploymentStatus = "1";
+        //personals[4].WithAllowance = false;
+        //personals[4].WithCpf = false;
+        //personals[4].Citizenship = "10";
+        //personals[4].NumberOfIncomeMonths = 3;
+
+        //monthlyIncomeSet = new LeasWebRef.MonthlyIncome[3];
+        //monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201311";
+        //monthlyIncomeSet[0].Amount = 0;
+
+        //monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201312";
+        //monthlyIncomeSet[1].Amount = 0;
+
+        //monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201401";
+        //monthlyIncomeSet[2].Amount = 0;
+
+        //personals[4].MonthlyIncomeSet = monthlyIncomeSet;
+
+        //// Personal 1's documents
+        //documents = new LeasWebRef.Document[1];
+
+        //for (int i = 0; i < documents.Length; i++)
+        //{
+        //    documents[i] = new LeasWebRef.Document();
+        //}
+
+        //documents[0].DocumentTypeCode = "000007";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "OCC-UNEMPL-STU";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "0001-01-01";
+        //documents[0].Status = "REC";
+
+        //personals[4].Documents = documents;
+
+
+        #endregion
+
+        #region Personal 2 unemployed
+
+        //personals[1] = new LeasWebRef.Personal();
+        //personals[1].IsDeletion = false;
+        //personals[1].PersonalType = "HA";
+        //personals[1].CustomerId = "PF094806C";
+        //personals[1].IsMainApplicant = true;
+        //personals[1].Nric = "T1010337H";
+        //personals[1].Name = "POPOY LEDESMA";
+        //personals[1].MaritalStatus = "S";
+        //personals[1].DateOfBirth = new DateTime(1976, 3, 25);
+        //personals[1].Relationship = "00";
+        //personals[1].AnnualIncome = 0.00m;
+        //personals[1].AverageIncome = 3000.00m;
+        //personals[1].EmployerName = "ABC";
+        //personals[1].EmploymentDate = new DateTime(2001, 3, 20);
+        //personals[1].EmploymentStatus = "1";
+        //personals[1].WithAllowance = false;
+        //personals[1].WithCpf = false;
+        //personals[1].Citizenship = "10";
+        //personals[1].NumberOfIncomeMonths = 3;
+
+        //monthlyIncomeSet = new LeasWebRef.MonthlyIncome[12];
+        //monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201301";
+        //monthlyIncomeSet[0].Amount = 3000;
+
+        //monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201302";
+        //monthlyIncomeSet[1].Amount = 3000;
+
+        //monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201303";
+        //monthlyIncomeSet[2].Amount = 3000;
+
+        //monthlyIncomeSet[3] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[3].YearMonth = "201304";
+        //monthlyIncomeSet[3].Amount = 3000;
+
+        //monthlyIncomeSet[4] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[4].YearMonth = "201305";
+        //monthlyIncomeSet[4].Amount = 3000;
+
+        //monthlyIncomeSet[5] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[5].YearMonth = "201306";
+        //monthlyIncomeSet[5].Amount = 3000;
+
+        //monthlyIncomeSet[6] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[6].YearMonth = "201307";
+        //monthlyIncomeSet[6].Amount = 3000;
+
+        //monthlyIncomeSet[7] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[7].YearMonth = "201308";
+        //monthlyIncomeSet[7].Amount = 3000;
+
+        //monthlyIncomeSet[8] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[8].YearMonth = "201309";
+        //monthlyIncomeSet[8].Amount = 3000;
+
+        //monthlyIncomeSet[9] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[9].YearMonth = "201310";
+        //monthlyIncomeSet[9].Amount = 3000;
+
+        //monthlyIncomeSet[10] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[10].YearMonth = "201311";
+        //monthlyIncomeSet[10].Amount = 3000;
+
+        //monthlyIncomeSet[11] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[11].YearMonth = "201312";
+        //monthlyIncomeSet[11].Amount = 3000;
+
+        //personals[1].MonthlyIncomeSet = monthlyIncomeSet;
+
+        //// Personal 1's documents
+        //documents = new LeasWebRef.Document[12];
+
+        //for (int i = 0; i < documents.Length; i++)
+        //{
+        //    documents[i] = new LeasWebRef.Document();
+        //}
+
+        //documents[0].DocumentTypeCode = "000023";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "APP-EMPL-CPF";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "2013-01-01";
+        //documents[0].Status = "PEN";
+
+        //documents[1].DocumentTypeCode = "000023";
+        //documents[1].DocumentTypeSubCode = "00";
+        //documents[1].Category = "APP-EMPL-CPF";
+        //documents[1].CategoryGroup = string.Empty;
+        //documents[1].CategoryDate = "0001-01-01";
+        //documents[1].Date = "2013-01-01";
+        //documents[1].Status = "CAN";
+
+        //documents[2].DocumentTypeCode = "000023";
+        //documents[2].DocumentTypeSubCode = "00";
+        //documents[2].Category = "APP-EMPL-CPF";
+        //documents[2].CategoryGroup = string.Empty;
+        //documents[2].CategoryDate = "0001-01-01";
+        //documents[2].Date = "2013-02-01";
+        //documents[2].Status = "PEN";
+
+        //documents[3].DocumentTypeCode = "000023";
+        //documents[3].DocumentTypeSubCode = "00";
+        //documents[3].Category = "APP-EMPL-CPF";
+        //documents[3].CategoryGroup = string.Empty;
+        //documents[3].CategoryDate = "0001-01-01";
+        //documents[3].Date = "2013-02-01";
+        //documents[3].Status = "CAN";
+
+        //documents[4].DocumentTypeCode = "000023";
+        //documents[4].DocumentTypeSubCode = "00";
+        //documents[4].Category = "APP-EMPL-CPF";
+        //documents[4].CategoryGroup = string.Empty;
+        //documents[4].CategoryDate = "0001-01-01";
+        //documents[4].Date = "2013-03-01";
+        //documents[4].Status = "PEN";
+
+        //documents[5].DocumentTypeCode = "000023";
+        //documents[5].DocumentTypeSubCode = "00";
+        //documents[5].Category = "APP-EMPL-CPF";
+        //documents[5].CategoryGroup = string.Empty;
+        //documents[5].CategoryDate = "0001-01-01";
+        //documents[5].Date = "2013-03-01";
+        //documents[5].Status = "CAN";
+
+        //documents[6].DocumentTypeCode = "000023";
+        //documents[6].DocumentTypeSubCode = "00";
+        //documents[6].Category = "APP-EMPL-CPF";
+        //documents[6].CategoryGroup = string.Empty;
+        //documents[6].CategoryDate = "0001-01-01";
+        //documents[6].Date = "2013-04-01";
+        //documents[6].Status = "PEN";
+
+        //documents[7].DocumentTypeCode = "000023";
+        //documents[7].DocumentTypeSubCode = "00";
+        //documents[7].Category = "APP-EMPL-CPF";
+        //documents[7].CategoryGroup = string.Empty;
+        //documents[7].CategoryDate = "0001-01-01";
+        //documents[7].Date = "2013-04-01";
+        //documents[7].Status = "CAN";
+
+        //documents[8].DocumentTypeCode = "000023";
+        //documents[8].DocumentTypeSubCode = "00";
+        //documents[8].Category = "APP-EMPL-CPF";
+        //documents[8].CategoryGroup = string.Empty;
+        //documents[8].CategoryDate = "0001-01-01";
+        //documents[8].Date = "2013-05-01";
+        //documents[8].Status = "PEN";
+
+        //documents[9].DocumentTypeCode = "000023";
+        //documents[9].DocumentTypeSubCode = "00";
+        //documents[9].Category = "APP-EMPL-CPF";
+        //documents[9].CategoryGroup = string.Empty;
+        //documents[9].CategoryDate = "0001-01-01";
+        //documents[9].Date = "2013-05-01";
+        //documents[9].Status = "CAN";
+
+        //documents[10].DocumentTypeCode = "000023";
+        //documents[10].DocumentTypeSubCode = "00";
+        //documents[10].Category = "APP-EMPL-CPF";
+        //documents[10].CategoryGroup = string.Empty;
+        //documents[10].CategoryDate = "0001-01-01";
+        //documents[10].Date = "2013-06-01";
+        //documents[10].Status = "PEN";
+
+        //documents[11].DocumentTypeCode = "000023";
+        //documents[11].DocumentTypeSubCode = "00";
+        //documents[11].Category = "APP-EMPL-CPF";
+        //documents[11].CategoryGroup = string.Empty;
+        //documents[11].CategoryDate = "0001-01-01";
+        //documents[11].Date = "2013-06-01";
+        //documents[11].Status = "CAN";
+
+        //personals[1].Documents = documents;
+
+
+
+        #endregion
+
+        #region for testing duplicate nric
+        personals[1] = new LeasWebRef.Personal();
+        personals[1].IsDeletion = false;
+        personals[1].PersonalType = "HA";
+        personals[1].CustomerId = "PD076896J";
+        personals[1].IsMainApplicant = false;
+        personals[1].Nric = "S7616691I";
+        personals[1].Name = "PHUA HOCK MENG (PAN FUMING)";
+        personals[1].MaritalStatus = "M";
+        personals[1].DateOfBirth = new DateTime(1976, 6, 17);
+        personals[1].Relationship = "00";
+        personals[1].AnnualIncome = 0.00m;
+        personals[1].AverageIncome = 0.00m;
+        personals[1].EmployerName = string.Empty;
+        personals[1].EmploymentDate = new DateTime(0001, 1, 1);
+        personals[1].EmploymentStatus = "5";
+        personals[1].WithAllowance = false;
+        personals[1].WithCpf = false;
+        personals[1].Citizenship = "10";
+        personals[1].NumberOfIncomeMonths = 12;
+
+        #region hide
+        monthlyIncomeSet = new LeasWebRef.MonthlyIncome[12];
+        monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[0].YearMonth = "201311";
+        monthlyIncomeSet[0].Amount = 0;
+
+        monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[1].YearMonth = "201312";
+        monthlyIncomeSet[1].Amount = 0;
+
+        monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[2].YearMonth = "201401";
+        monthlyIncomeSet[2].Amount = 0;
+
+        monthlyIncomeSet[3] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[3].YearMonth = "201402";
+        monthlyIncomeSet[3].Amount = 0;
+
+        monthlyIncomeSet[4] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[4].YearMonth = "201403";
+        monthlyIncomeSet[4].Amount = 0;
+
+        monthlyIncomeSet[5] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[5].YearMonth = "201404";
+        monthlyIncomeSet[5].Amount = 0;
+
+        monthlyIncomeSet[6] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[6].YearMonth = "201405";
+        monthlyIncomeSet[6].Amount = 0;
+
+        monthlyIncomeSet[7] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[7].YearMonth = "201406";
+        monthlyIncomeSet[7].Amount = 0;
+
+        monthlyIncomeSet[8] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[8].YearMonth = "201407";
+        monthlyIncomeSet[8].Amount = 0;
+
+        monthlyIncomeSet[9] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[9].YearMonth = "201408";
+        monthlyIncomeSet[9].Amount = 0;
+
+        monthlyIncomeSet[10] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[10].YearMonth = "201409";
+        monthlyIncomeSet[10].Amount = 0;
+
+        monthlyIncomeSet[11] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[11].YearMonth = "201410";
+        monthlyIncomeSet[11].Amount = 0;
+
+        personals[1].MonthlyIncomeSet = monthlyIncomeSet;
+
+
+        documents = new LeasWebRef.Document[30];
+
+        for (int i = 0; i < documents.Length; i++)
+        {
+            documents[i] = new LeasWebRef.Document();
+        }
+
+        documents[0].DocumentTypeCode = "000026";
+        documents[0].DocumentTypeSubCode = "00";
+        documents[0].Category = "APP-SELFEMPL";
+        documents[0].CategoryGroup = string.Empty;
+        documents[0].CategoryDate = "0001-01-01";
+        documents[0].Date = "2013-11-01";
+        documents[0].Status = "REC";
+
+        documents[1].DocumentTypeCode = "000026";
+        documents[1].DocumentTypeSubCode = "00";
+        documents[1].Category = "APP-SELFEMPL";
+        documents[1].CategoryGroup = string.Empty;
+        documents[1].CategoryDate = "0001-01-01";
+        documents[1].Date = "2013-12-01";
+        documents[1].Status = "REC";
+
+        documents[2].DocumentTypeCode = "000026";
+        documents[2].DocumentTypeSubCode = "00";
+        documents[2].Category = "APP-SELFEMPL";
+        documents[2].CategoryGroup = string.Empty;
+        documents[2].CategoryDate = "0001-01-01";
+        documents[2].Date = "2014-01-01";
+        documents[2].Status = "REC";
+
+        documents[3].DocumentTypeCode = "000026";
+        documents[3].DocumentTypeSubCode = "00";
+        documents[3].Category = "APP-SELFEMPL";
+        documents[3].CategoryGroup = string.Empty;
+        documents[3].CategoryDate = "0001-01-01";
+        documents[3].Date = "2014-02-01";
+        documents[3].Status = "REC";
+
+        documents[4].DocumentTypeCode = "000026";
+        documents[4].DocumentTypeSubCode = "00";
+        documents[4].Category = "APP-SELFEMPL";
+        documents[4].CategoryGroup = string.Empty;
+        documents[4].CategoryDate = "0001-01-01";
+        documents[4].Date = "2014-03-01";
+        documents[4].Status = "REC";
+
+        documents[5].DocumentTypeCode = "000026";
+        documents[5].DocumentTypeSubCode = "00";
+        documents[5].Category = "APP-SELFEMPL";
+        documents[5].CategoryGroup = string.Empty;
+        documents[5].CategoryDate = "0001-01-01";
+        documents[5].Date = "2014-04-01";
+        documents[5].Status = "REC";
+
+        documents[6].DocumentTypeCode = "000026";
+        documents[6].DocumentTypeSubCode = "00";
+        documents[6].Category = "APP-SELFEMPL";
+        documents[6].CategoryGroup = string.Empty;
+        documents[6].CategoryDate = "0001-01-01";
+        documents[6].Date = "2014-05-01";
+        documents[6].Status = "REC";
+
+        documents[7].DocumentTypeCode = "000026";
+        documents[7].DocumentTypeSubCode = "00";
+        documents[7].Category = "APP-SELFEMPL";
+        documents[7].CategoryGroup = string.Empty;
+        documents[7].CategoryDate = "0001-01-01";
+        documents[7].Date = "2014-06-01";
+        documents[7].Status = "REC";
+
+        documents[8].DocumentTypeCode = "000026";
+        documents[8].DocumentTypeSubCode = "00";
+        documents[8].Category = "APP-SELFEMPL";
+        documents[8].CategoryGroup = string.Empty;
+        documents[8].CategoryDate = "0001-01-01";
+        documents[8].Date = "2014-07-01";
+        documents[8].Status = "REC";
+
+        documents[9].DocumentTypeCode = "000026";
+        documents[9].DocumentTypeSubCode = "00";
+        documents[9].Category = string.Empty;
+        documents[9].CategoryGroup = string.Empty;
+        documents[9].CategoryDate = "0001-01-01";
+        documents[9].Date = "2014-08-01";
+        documents[9].Status = "REC";
+
+        documents[10].DocumentTypeCode = "000026";
+        documents[10].DocumentTypeSubCode = "00";
+        documents[10].Category = string.Empty;
+        documents[10].CategoryGroup = string.Empty;
+        documents[10].CategoryDate = "0001-01-01";
+        documents[10].Date = "2014-09-01";
+        documents[10].Status = "REC";
+
+        documents[11].DocumentTypeCode = "000026";
+        documents[11].DocumentTypeSubCode = "00";
+        documents[11].Category = string.Empty;
+        documents[11].CategoryGroup = string.Empty;
+        documents[11].CategoryDate = "0001-01-01";
+        documents[11].Date = "2014-10-01";
+        documents[11].Status = "REC";
+
+        documents[12].DocumentTypeCode = "000026";
+        documents[12].DocumentTypeSubCode = "00";
+        documents[12].Category = string.Empty;
+        documents[12].CategoryGroup = string.Empty;
+        documents[12].CategoryDate = "0001-01-01";
+        documents[12].Date = "2014-10-01";
+        documents[12].Status = "REC";
+
+        documents[13].DocumentTypeCode = "000026";
+        documents[13].DocumentTypeSubCode = "00";
+        documents[13].Category = string.Empty;
+        documents[13].CategoryGroup = string.Empty;
+        documents[13].CategoryDate = "0001-01-01";
+        documents[13].Date = "2014-10-01";
+        documents[13].Status = "REC";
+
+        documents[14].DocumentTypeCode = "000028";
+        documents[14].DocumentTypeSubCode = "00";
+        documents[14].Category = string.Empty;
+        documents[14].CategoryGroup = string.Empty;
+        documents[14].CategoryDate = "0001-01-01";
+        documents[14].Date = "0001-01-01";
+        documents[14].Status = "REC";
+
+        documents[15].DocumentTypeCode = "000030";
+        documents[15].DocumentTypeSubCode = "00";
+        documents[15].Category = string.Empty;
+        documents[15].CategoryGroup = string.Empty;
+        documents[15].CategoryDate = "0001-01-01";
+        documents[15].Date = "0001-01-01";
+        documents[15].Status = "CAN";
+
+        documents[16].DocumentTypeCode = "000031";
+        documents[16].DocumentTypeSubCode = "00";
+        documents[16].Category = string.Empty;
+        documents[16].CategoryGroup = "01";
+        documents[16].CategoryDate = "0001-01-01";
+        documents[16].Date = "0001-01-01";
+        documents[16].Status = "CAN";
+
+        documents[17].DocumentTypeCode = "000034";
+        documents[17].DocumentTypeSubCode = "00";
+        documents[17].Category = string.Empty;
+        documents[17].CategoryGroup = "02";
+        documents[17].CategoryDate = "0001-01-01";
+        documents[17].Date = "0001-01-01";
+        documents[17].Status = "CAN";
+
+        documents[18].DocumentTypeCode = "000035";
+        documents[18].DocumentTypeSubCode = "00";
+        documents[18].Category = string.Empty;
+        documents[18].CategoryGroup = "02";
+        documents[18].CategoryDate = "0001-01-01";
+        documents[18].Date = "0001-01-01";
+        documents[18].Status = "CAN";
+
+        documents[19].DocumentTypeCode = "000094";
+        documents[19].DocumentTypeSubCode = "00";
+        documents[19].Category = string.Empty;
+        documents[19].CategoryGroup = string.Empty;
+        documents[19].CategoryDate = "0001-01-01";
+        documents[19].Date = "0001-01-01";
+        documents[19].Status = "CAN";
+        #endregion
+
+        personals[1].Documents = documents;
+
+
+        personals[0] = new LeasWebRef.Personal();
+        personals[0].IsDeletion = false;
+        personals[0].PersonalType = "HA";
+        personals[0].CustomerId = "PD276203Z";
+        personals[0].IsMainApplicant = false;
+        personals[0].Nric = "S8133692Z";
+        personals[0].Name = "PAK SIEW CHUN, KIREN (BAI XIAOZHEN, KIREN)";
+        personals[0].MaritalStatus = "M";
+        personals[0].DateOfBirth = new DateTime(1981, 10, 11);
+        personals[0].Relationship = "20";
+        personals[0].AnnualIncome = 0.00m;
+        personals[0].AverageIncome = 0.00m;
+        personals[0].EmployerName = string.Empty;
+        personals[0].EmploymentDate = new DateTime(0001, 1, 1);
+        personals[0].EmploymentStatus = "5";
+        personals[0].WithAllowance = false;
+        personals[0].WithCpf = false;
+        personals[0].Citizenship = "10";
+        personals[0].NumberOfIncomeMonths = 12;
+
+        #region hide
+        monthlyIncomeSet = new LeasWebRef.MonthlyIncome[12];
+        monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[0].YearMonth = "201311";
+        monthlyIncomeSet[0].Amount = 0;
+
+        monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[1].YearMonth = "201312";
+        monthlyIncomeSet[1].Amount = 0;
+
+        monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[2].YearMonth = "201401";
+        monthlyIncomeSet[2].Amount = 0;
+
+        monthlyIncomeSet[3] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[3].YearMonth = "201402";
+        monthlyIncomeSet[3].Amount = 0;
+
+        monthlyIncomeSet[4] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[4].YearMonth = "201403";
+        monthlyIncomeSet[4].Amount = 0;
+
+        monthlyIncomeSet[5] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[5].YearMonth = "201404";
+        monthlyIncomeSet[5].Amount = 0;
+
+        monthlyIncomeSet[6] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[6].YearMonth = "201405";
+        monthlyIncomeSet[6].Amount = 0;
+
+        monthlyIncomeSet[7] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[7].YearMonth = "201406";
+        monthlyIncomeSet[7].Amount = 0;
+
+        monthlyIncomeSet[8] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[8].YearMonth = "201407";
+        monthlyIncomeSet[8].Amount = 0;
+
+        monthlyIncomeSet[9] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[9].YearMonth = "201408";
+        monthlyIncomeSet[9].Amount = 0;
+
+        monthlyIncomeSet[10] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[10].YearMonth = "201409";
+        monthlyIncomeSet[10].Amount = 0;
+
+        monthlyIncomeSet[11] = new LeasWebRef.MonthlyIncome();
+        monthlyIncomeSet[11].YearMonth = "201410";
+        monthlyIncomeSet[11].Amount = 0;
+
+        personals[0].MonthlyIncomeSet = monthlyIncomeSet;
+
+
+        documents = new LeasWebRef.Document[30];
+
+        for (int i = 0; i < documents.Length; i++)
+        {
+            documents[i] = new LeasWebRef.Document();
+        }
+
+        documents[0].DocumentTypeCode = "000026";
+        documents[0].DocumentTypeSubCode = "00";
+        documents[0].Category = "APP-SELFEMPL";
+        documents[0].CategoryGroup = string.Empty;
+        documents[0].CategoryDate = "0001-01-01";
+        documents[0].Date = "2013-11-01";
+        documents[0].Status = "PEN";
+
+        documents[1].DocumentTypeCode = "000026";
+        documents[1].DocumentTypeSubCode = "00";
+        documents[1].Category = "APP-SELFEMPL";
+        documents[1].CategoryGroup = string.Empty;
+        documents[1].CategoryDate = "0001-01-01";
+        documents[1].Date = "2013-11-01";
+        documents[1].Status = "CAN";
+
+        documents[2].DocumentTypeCode = "000026";
+        documents[2].DocumentTypeSubCode = "00";
+        documents[2].Category = "APP-SELFEMPL";
+        documents[2].CategoryGroup = string.Empty;
+        documents[2].CategoryDate = "0001-01-01";
+        documents[2].Date = "2013-12-01";
+        documents[2].Status = "PEN";
+
+        documents[3].DocumentTypeCode = "000026";
+        documents[3].DocumentTypeSubCode = "00";
+        documents[3].Category = "APP-SELFEMPL";
+        documents[3].CategoryGroup = string.Empty;
+        documents[3].CategoryDate = "0001-01-01";
+        documents[3].Date = "2013-12-01";
+        documents[3].Status = "CAN";
+
+        documents[5].DocumentTypeCode = "000026";
+        documents[5].DocumentTypeSubCode = "00";
+        documents[5].Category = "APP-SELFEMPL";
+        documents[5].CategoryGroup = string.Empty;
+        documents[5].CategoryDate = "0001-01-01";
+        documents[5].Date = "2014-01-01";
+        documents[5].Status = "PEN";
+
+        documents[6].DocumentTypeCode = "000026";
+        documents[6].DocumentTypeSubCode = "00";
+        documents[6].Category = "APP-SELFEMPL";
+        documents[6].CategoryGroup = string.Empty;
+        documents[6].CategoryDate = "0001-01-01";
+        documents[6].Date = "2014-01-01";
+        documents[6].Status = "CAN";
+
+        documents[7].DocumentTypeCode = "000026";
+        documents[7].DocumentTypeSubCode = "00";
+        documents[7].Category = "APP-SELFEMPL";
+        documents[7].CategoryGroup = string.Empty;
+        documents[7].CategoryDate = "0001-01-01";
+        documents[7].Date = "2014-02-01";
+        documents[7].Status = "PEN";
+
+        documents[8].DocumentTypeCode = "000026";
+        documents[8].DocumentTypeSubCode = "00";
+        documents[8].Category = "APP-SELFEMPL";
+        documents[8].CategoryGroup = string.Empty;
+        documents[8].CategoryDate = "0001-01-01";
+        documents[8].Date = "2014-02-01";
+        documents[8].Status = "CAN";
+
+        documents[9].DocumentTypeCode = "000026";
+        documents[9].DocumentTypeSubCode = "00";
+        documents[9].Category = "APP-SELFEMPL";
+        documents[9].CategoryGroup = string.Empty;
+        documents[9].CategoryDate = "0001-01-01";
+        documents[9].Date = "2014-03-01";
+        documents[9].Status = "PEN";
+
+        documents[10].DocumentTypeCode = "000026";
+        documents[10].DocumentTypeSubCode = "00";
+        documents[10].Category = "APP-SELFEMPL";
+        documents[10].CategoryGroup = string.Empty;
+        documents[10].CategoryDate = "0001-01-01";
+        documents[10].Date = "2014-03-01";
+        documents[10].Status = "CAN";
+
+        documents[11].DocumentTypeCode = "000026";
+        documents[11].DocumentTypeSubCode = "00";
+        documents[11].Category = "APP-SELFEMPL";
+        documents[11].CategoryGroup = string.Empty;
+        documents[11].CategoryDate = "0001-01-01";
+        documents[11].Date = "2014-04-01";
+        documents[11].Status = "PEN";
+
+        documents[12].DocumentTypeCode = "000026";
+        documents[12].DocumentTypeSubCode = "00";
+        documents[12].Category = "APP-SELFEMPL";
+        documents[12].CategoryGroup = string.Empty;
+        documents[12].CategoryDate = "0001-01-01";
+        documents[12].Date = "2014-04-01";
+        documents[12].Status = "CAN";
+
+        documents[13].DocumentTypeCode = "000026";
+        documents[13].DocumentTypeSubCode = "00";
+        documents[13].Category = "APP-SELFEMPL";
+        documents[13].CategoryGroup = string.Empty;
+        documents[13].CategoryDate = "0001-01-01";
+        documents[13].Date = "2014-05-01";
+        documents[13].Status = "PEN";
+
+        documents[14].DocumentTypeCode = "000026";
+        documents[14].DocumentTypeSubCode = "00";
+        documents[14].Category = "APP-SELFEMPL";
+        documents[14].CategoryGroup = string.Empty;
+        documents[14].CategoryDate = "0001-01-01";
+        documents[14].Date = "2014-05-01";
+        documents[14].Status = "CAN";
+
+        documents[15].DocumentTypeCode = "000026";
+        documents[15].DocumentTypeSubCode = "00";
+        documents[15].Category = "APP-SELFEMPL";
+        documents[15].CategoryGroup = string.Empty;
+        documents[15].CategoryDate = "0001-01-01";
+        documents[15].Date = "2014-06-01";
+        documents[15].Status = "PEN";
+
+        documents[16].DocumentTypeCode = "000026";
+        documents[16].DocumentTypeSubCode = "00";
+        documents[16].Category = "APP-SELFEMPL";
+        documents[16].CategoryGroup = string.Empty;
+        documents[16].CategoryDate = "0001-01-01";
+        documents[16].Date = "2014-06-01";
+        documents[16].Status = "CAN";
+
+        documents[17].DocumentTypeCode = "000026";
+        documents[17].DocumentTypeSubCode = "00";
+        documents[17].Category = "APP-SELFEMPL";
+        documents[17].CategoryGroup = string.Empty;
+        documents[17].CategoryDate = "0001-01-01";
+        documents[17].Date = "2014-07-01";
+        documents[17].Status = "PEN";
+
+        documents[18].DocumentTypeCode = "000026";
+        documents[18].DocumentTypeSubCode = "00";
+        documents[18].Category = "APP-SELFEMPL";
+        documents[18].CategoryGroup = string.Empty;
+        documents[18].CategoryDate = "0001-01-01";
+        documents[18].Date = "2014-07-01";
+        documents[18].Status = "CAN";
+
+        documents[19].DocumentTypeCode = "000026";
+        documents[19].DocumentTypeSubCode = "00";
+        documents[19].Category = string.Empty;
+        documents[19].CategoryGroup = string.Empty;
+        documents[19].CategoryDate = "0001-01-01";
+        documents[19].Date = "2014-08-01";
+        documents[19].Status = "PEN";
+
+        documents[20].DocumentTypeCode = "000026";
+        documents[20].DocumentTypeSubCode = "00";
+        documents[20].Category = string.Empty;
+        documents[20].CategoryGroup = string.Empty;
+        documents[20].CategoryDate = "0001-01-01";
+        documents[20].Date = "2014-08-01";
+        documents[20].Status = "CAN";
+
+        documents[21].DocumentTypeCode = "000026";
+        documents[21].DocumentTypeSubCode = "00";
+        documents[21].Category = string.Empty;
+        documents[21].CategoryGroup = string.Empty;
+        documents[21].CategoryDate = "0001-01-01";
+        documents[21].Date = "2014-09-01";
+        documents[21].Status = "PEN";
+
+        documents[21].DocumentTypeCode = "000026";
+        documents[21].DocumentTypeSubCode = "00";
+        documents[21].Category = string.Empty;
+        documents[21].CategoryGroup = string.Empty;
+        documents[21].CategoryDate = "0001-01-01";
+        documents[21].Date = "2014-09-01";
+        documents[21].Status = "CAN";
+
+        documents[22].DocumentTypeCode = "000026";
+        documents[22].DocumentTypeSubCode = "00";
+        documents[22].Category = string.Empty;
+        documents[22].CategoryGroup = string.Empty;
+        documents[22].CategoryDate = "0001-01-01";
+        documents[22].Date = "2014-10-01";
+        documents[22].Status = "PEN";
+
+        documents[23].DocumentTypeCode = "000026";
+        documents[23].DocumentTypeSubCode = "00";
+        documents[23].Category = string.Empty;
+        documents[23].CategoryGroup = string.Empty;
+        documents[23].CategoryDate = "0001-01-01";
+        documents[23].Date = "2014-10-01";
+        documents[23].Status = "CAN";
+        #endregion
+
+        personals[0].Documents = documents;
+
+        personals[2] = new LeasWebRef.Personal();
+        personals[2].IsDeletion = true;
+        personals[2].PersonalType = "HA";
+        personals[2].CustomerId = "PD076896L";
+        personals[2].IsMainApplicant = false;
+        personals[2].Nric = "S7616691J";
+        personals[2].Name = "KOBE BRYANT";
+        personals[2].MaritalStatus = "M";
+        personals[2].DateOfBirth = new DateTime(1976, 6, 17);
+        personals[2].Relationship = "00";
+        personals[2].AnnualIncome = 0.00m;
+        personals[2].AverageIncome = 0.00m;
+        personals[2].EmployerName = string.Empty;
+        personals[2].EmploymentDate = new DateTime(0001, 1, 1);
+        personals[2].EmploymentStatus = "5";
+        personals[2].WithAllowance = false;
+        personals[2].WithCpf = false;
+        personals[2].Citizenship = "10";
+        personals[2].NumberOfIncomeMonths = 12;
+
+        personals[3] = new LeasWebRef.Personal();
+        personals[3].IsDeletion = false;
+        personals[3].PersonalType = "HA";
+        personals[3].CustomerId = "PD076896K";
+        personals[3].IsMainApplicant = true;
+        personals[3].Nric = "S7616691K";
+        personals[3].Name = "LEBRON JAMES";
+        personals[3].MaritalStatus = "M";
+        personals[3].DateOfBirth = new DateTime(1976, 6, 17);
+        personals[3].Relationship = "00";
+        personals[3].AnnualIncome = 0.00m;
+        personals[3].AverageIncome = 0.00m;
+        personals[3].EmployerName = string.Empty;
+        personals[3].EmploymentDate = new DateTime(0001, 1, 1);
+        personals[3].EmploymentStatus = "5";
+        personals[3].WithAllowance = false;
+        personals[3].WithCpf = false;
+        personals[3].Citizenship = "10";
+        personals[3].NumberOfIncomeMonths = 12;
+
+        //personals[2] = new LeasWebRef.Personal();
+        //personals[2].IsDeletion = false;
+        //personals[2].PersonalType = "OC";
+        //personals[2].CustomerId = "PE971415D";
+        //personals[2].IsMainApplicant = false;
+        //personals[2].Nric = "T1031912E";
+        //personals[2].Name = "PHUA CHEE YONG, MARCIUS (PAN ZHIYONG)";
+        //personals[2].MaritalStatus = "D";
+        //personals[2].DateOfBirth = new DateTime(1981, 10, 11);
+        //personals[2].Relationship = "41";
+        //personals[2].AnnualIncome = 0.00m;
+        //personals[2].AverageIncome = 0.00m;
+        //personals[2].EmployerName = string.Empty;
+        //personals[2].EmploymentDate = new DateTime(0001, 1, 1);
+        //personals[2].EmploymentStatus = "1";
+        //personals[2].WithAllowance = false;
+        //personals[2].WithCpf = false;
+        //personals[2].Citizenship = "10";
+        //personals[2].NumberOfIncomeMonths = 3;
+
+        //monthlyIncomeSet = new LeasWebRef.MonthlyIncome[3];
+        //monthlyIncomeSet[0] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[0].YearMonth = "201408";
+        //monthlyIncomeSet[0].Amount = 0;
+
+        //monthlyIncomeSet[1] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[1].YearMonth = "201409";
+        //monthlyIncomeSet[1].Amount = 0;
+
+        //monthlyIncomeSet[2] = new LeasWebRef.MonthlyIncome();
+        //monthlyIncomeSet[2].YearMonth = "201410";
+        //monthlyIncomeSet[2].Amount = 0;
+
+        //personals[2].MonthlyIncomeSet = monthlyIncomeSet;
+
+        #endregion
+
+        int numberOfPersonalsAffected = webService.SendHouseholdInfo(authentication,
+            refNumber, applicationDate, status, preEligibilityOic, creditAccessmentOic,
+            householdIncome, creditAccessmentIncome,
+            rejectionDate, cancellationDate, approvalDate, expiryDate, secondCADate, secondCA,risk, refreshHouseholdStructure, personals);
+
+        Label1.Text = numberOfPersonalsAffected.ToString();
+    }
+}
+
+
+
+
+
+        //documents[0].DocumentTypeCode = "000026";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "APP-SELFEMPL";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "2013-11-01";
+        //documents[0].Status = "PEN";
+
+        //documents[1].DocumentTypeCode = "000026";
+        //documents[1].DocumentTypeSubCode = "00";
+        //documents[1].Category = "APP-SELFEMPL";
+        //documents[1].CategoryGroup = string.Empty;
+        //documents[1].CategoryDate = "0001-01-01";
+        //documents[1].Date = "2013-11-01";
+        //documents[1].Status = "CAN";
+
+        //documents[2].DocumentTypeCode = "000026";
+        //documents[2].DocumentTypeSubCode = "00";
+        //documents[2].Category = "APP-SELFEMPL";
+        //documents[2].CategoryGroup = string.Empty;
+        //documents[2].CategoryDate = "0001-01-01";
+        //documents[2].Date = "2013-12-01";
+        //documents[2].Status = "PEN";
+
+        //documents[3].DocumentTypeCode = "000026";
+        //documents[3].DocumentTypeSubCode = "00";
+        //documents[3].Category = "APP-SELFEMPL";
+        //documents[3].CategoryGroup = string.Empty;
+        //documents[3].CategoryDate = "0001-01-01";
+        //documents[3].Date = "2013-12-01";
+        //documents[3].Status = "CAN";
+
+        //documents[5].DocumentTypeCode = "000026";
+        //documents[5].DocumentTypeSubCode = "00";
+        //documents[5].Category = "APP-SELFEMPL";
+        //documents[5].CategoryGroup = string.Empty;
+        //documents[5].CategoryDate = "0001-01-01";
+        //documents[5].Date = "2014-01-01";
+        //documents[5].Status = "PEN";
+
+        //documents[6].DocumentTypeCode = "000026";
+        //documents[6].DocumentTypeSubCode = "00";
+        //documents[6].Category = "APP-SELFEMPL";
+        //documents[6].CategoryGroup = string.Empty;
+        //documents[6].CategoryDate = "0001-01-01";
+        //documents[6].Date = "2014-01-01";
+        //documents[6].Status = "CAN";
+
+        //documents[7].DocumentTypeCode = "000026";
+        //documents[7].DocumentTypeSubCode = "00";
+        //documents[7].Category = "APP-SELFEMPL";
+        //documents[7].CategoryGroup = string.Empty;
+        //documents[7].CategoryDate = "0001-01-01";
+        //documents[7].Date = "2014-02-01";
+        //documents[7].Status = "PEN";
+
+        //documents[8].DocumentTypeCode = "000026";
+        //documents[8].DocumentTypeSubCode = "00";
+        //documents[8].Category = "APP-SELFEMPL";
+        //documents[8].CategoryGroup = string.Empty;
+        //documents[8].CategoryDate = "0001-01-01";
+        //documents[8].Date = "2014-02-01";
+        //documents[8].Status = "CAN";
+
+        //documents[9].DocumentTypeCode = "000026";
+        //documents[9].DocumentTypeSubCode = "00";
+        //documents[9].Category = "APP-SELFEMPL";
+        //documents[9].CategoryGroup = string.Empty;
+        //documents[9].CategoryDate = "0001-01-01";
+        //documents[9].Date = "2014-03-01";
+        //documents[9].Status = "PEN";
+
+        //documents[10].DocumentTypeCode = "000026";
+        //documents[10].DocumentTypeSubCode = "00";
+        //documents[10].Category = "APP-SELFEMPL";
+        //documents[10].CategoryGroup = string.Empty;
+        //documents[10].CategoryDate = "0001-01-01";
+        //documents[10].Date = "2014-03-01";
+        //documents[10].Status = "CAN";
+
+        //documents[11].DocumentTypeCode = "000026";
+        //documents[11].DocumentTypeSubCode = "00";
+        //documents[11].Category = "APP-SELFEMPL";
+        //documents[11].CategoryGroup = string.Empty;
+        //documents[11].CategoryDate = "0001-01-01";
+        //documents[11].Date = "2014-04-01";
+        //documents[11].Status = "PEN";
+
+        //documents[12].DocumentTypeCode = "000026";
+        //documents[12].DocumentTypeSubCode = "00";
+        //documents[12].Category = "APP-SELFEMPL";
+        //documents[12].CategoryGroup = string.Empty;
+        //documents[12].CategoryDate = "0001-01-01";
+        //documents[12].Date = "2014-04-01";
+        //documents[12].Status = "CAN";
+
+        //documents[13].DocumentTypeCode = "000026";
+        //documents[13].DocumentTypeSubCode = "00";
+        //documents[13].Category = "APP-SELFEMPL";
+        //documents[13].CategoryGroup = string.Empty;
+        //documents[13].CategoryDate = "0001-01-01";
+        //documents[13].Date = "2014-05-01";
+        //documents[13].Status = "PEN";
+
+        //documents[14].DocumentTypeCode = "000026";
+        //documents[14].DocumentTypeSubCode = "00";
+        //documents[14].Category = "APP-SELFEMPL";
+        //documents[14].CategoryGroup = string.Empty;
+        //documents[14].CategoryDate = "0001-01-01";
+        //documents[14].Date = "2014-05-01";
+        //documents[14].Status = "CAN";
+
+        //documents[15].DocumentTypeCode = "000026";
+        //documents[15].DocumentTypeSubCode = "00";
+        //documents[15].Category = "APP-SELFEMPL";
+        //documents[15].CategoryGroup = string.Empty;
+        //documents[15].CategoryDate = "0001-01-01";
+        //documents[15].Date = "2014-06-01";
+        //documents[15].Status = "PEN";
+
+        //documents[16].DocumentTypeCode = "000026";
+        //documents[16].DocumentTypeSubCode = "00";
+        //documents[16].Category = "APP-SELFEMPL";
+        //documents[16].CategoryGroup = string.Empty;
+        //documents[16].CategoryDate = "0001-01-01";
+        //documents[16].Date = "2014-06-01";
+        //documents[16].Status = "CAN";
+
+        //documents[17].DocumentTypeCode = "000026";
+        //documents[17].DocumentTypeSubCode = "00";
+        //documents[17].Category = "APP-SELFEMPL";
+        //documents[17].CategoryGroup = string.Empty;
+        //documents[17].CategoryDate = "0001-01-01";
+        //documents[17].Date = "2014-07-01";
+        //documents[17].Status = "PEN";
+
+        //documents[18].DocumentTypeCode = "000026";
+        //documents[18].DocumentTypeSubCode = "00";
+        //documents[18].Category = "APP-SELFEMPL";
+        //documents[18].CategoryGroup = string.Empty;
+        //documents[18].CategoryDate = "0001-01-01";
+        //documents[18].Date = "2014-07-01";
+        //documents[18].Status = "CAN";
+
+        //documents[19].DocumentTypeCode = "000026";
+        //documents[19].DocumentTypeSubCode = "00";
+        //documents[19].Category = string.Empty;
+        //documents[19].CategoryGroup = string.Empty;
+        //documents[19].CategoryDate = "0001-01-01";
+        //documents[19].Date = "2014-08-01";
+        //documents[19].Status = "PEN";
+
+        //documents[20].DocumentTypeCode = "000026";
+        //documents[20].DocumentTypeSubCode = "00";
+        //documents[20].Category = string.Empty;
+        //documents[20].CategoryGroup = string.Empty;
+        //documents[20].CategoryDate = "0001-01-01";
+        //documents[20].Date = "2014-08-01";
+        //documents[20].Status = "CAN";
+
+        //documents[21].DocumentTypeCode = "000026";
+        //documents[21].DocumentTypeSubCode = "00";
+        //documents[21].Category = string.Empty;
+        //documents[21].CategoryGroup = string.Empty;
+        //documents[21].CategoryDate = "0001-01-01";
+        //documents[21].Date = "2014-09-01";
+        //documents[21].Status = "PEN";
+
+        //documents[21].DocumentTypeCode = "000026";
+        //documents[21].DocumentTypeSubCode = "00";
+        //documents[21].Category = string.Empty;
+        //documents[21].CategoryGroup = string.Empty;
+        //documents[21].CategoryDate = "0001-01-01";
+        //documents[21].Date = "2014-09-01";
+        //documents[21].Status = "CAN";
+
+        //documents[22].DocumentTypeCode = "000026";
+        //documents[22].DocumentTypeSubCode = "00";
+        //documents[22].Category = string.Empty;
+        //documents[22].CategoryGroup = string.Empty;
+        //documents[22].CategoryDate = "0001-01-01";
+        //documents[22].Date = "2014-10-01";
+        //documents[22].Status = "PEN";
+
+        //documents[23].DocumentTypeCode = "000026";
+        //documents[23].DocumentTypeSubCode = "00";
+        //documents[23].Category = string.Empty;
+        //documents[23].CategoryGroup = string.Empty;
+        //documents[23].CategoryDate = "0001-01-01";
+        //documents[23].Date = "2014-10-01";
+        //documents[23].Status = "CAN";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //documents[0].DocumentTypeCode = "000026";
+        //documents[0].DocumentTypeSubCode = "00";
+        //documents[0].Category = "APP-SELFEMPL";
+        //documents[0].CategoryGroup = string.Empty;
+        //documents[0].CategoryDate = "0001-01-01";
+        //documents[0].Date = "2013-11-01";
+        //documents[0].Status = "REC";        
+
+        //documents[1].DocumentTypeCode = "000026";
+        //documents[1].DocumentTypeSubCode = "00";
+        //documents[1].Category = "APP-SELFEMPL";
+        //documents[1].CategoryGroup = string.Empty;
+        //documents[1].CategoryDate = "0001-01-01";
+        //documents[1].Date = "2013-12-01";
+        //documents[1].Status = "REC";
+
+        //documents[2].DocumentTypeCode = "000026";
+        //documents[2].DocumentTypeSubCode = "00";
+        //documents[2].Category = "APP-SELFEMPL";
+        //documents[2].CategoryGroup = string.Empty;
+        //documents[2].CategoryDate = "0001-01-01";
+        //documents[2].Date = "2014-01-01";
+        //documents[2].Status = "REC";
+
+        //documents[3].DocumentTypeCode = "000026";
+        //documents[3].DocumentTypeSubCode = "00";
+        //documents[3].Category = "APP-SELFEMPL";
+        //documents[3].CategoryGroup = string.Empty;
+        //documents[3].CategoryDate = "0001-01-01";
+        //documents[3].Date = "2014-02-01";
+        //documents[3].Status = "REC";
+
+        //documents[4].DocumentTypeCode = "000026";
+        //documents[4].DocumentTypeSubCode = "00";
+        //documents[4].Category = "APP-SELFEMPL";
+        //documents[4].CategoryGroup = string.Empty;
+        //documents[4].CategoryDate = "0001-01-01";
+        //documents[4].Date = "2014-03-01";
+        //documents[4].Status = "REC";
+
+        //documents[5].DocumentTypeCode = "000026";
+        //documents[5].DocumentTypeSubCode = "00";
+        //documents[5].Category = "APP-SELFEMPL";
+        //documents[5].CategoryGroup = string.Empty;
+        //documents[5].CategoryDate = "0001-01-01";
+        //documents[5].Date = "2014-04-01";
+        //documents[5].Status = "REC";
+
+        //documents[6].DocumentTypeCode = "000026";
+        //documents[6].DocumentTypeSubCode = "00";
+        //documents[6].Category = "APP-SELFEMPL";
+        //documents[6].CategoryGroup = string.Empty;
+        //documents[6].CategoryDate = "0001-01-01";
+        //documents[6].Date = "2014-05-01";
+        //documents[6].Status = "REC";
+
+        //documents[7].DocumentTypeCode = "000026";
+        //documents[7].DocumentTypeSubCode = "00";
+        //documents[7].Category = "APP-SELFEMPL";
+        //documents[7].CategoryGroup = string.Empty;
+        //documents[7].CategoryDate = "0001-01-01";
+        //documents[7].Date = "2014-06-01";
+        //documents[7].Status = "REC";
+
+        //documents[8].DocumentTypeCode = "000026";
+        //documents[8].DocumentTypeSubCode = "00";
+        //documents[8].Category = "APP-SELFEMPL";
+        //documents[8].CategoryGroup = string.Empty;
+        //documents[8].CategoryDate = "0001-01-01";
+        //documents[8].Date = "2014-07-01";
+        //documents[8].Status = "REC";
+
+        //documents[9].DocumentTypeCode = "000026";
+        //documents[9].DocumentTypeSubCode = "00";
+        //documents[9].Category = string.Empty;
+        //documents[9].CategoryGroup = string.Empty;
+        //documents[9].CategoryDate = "0001-01-01";
+        //documents[9].Date = "2014-08-01";
+        //documents[9].Status = "REC";
+
+        //documents[10].DocumentTypeCode = "000026";
+        //documents[10].DocumentTypeSubCode = "00";
+        //documents[10].Category = string.Empty;
+        //documents[10].CategoryGroup = string.Empty;
+        //documents[10].CategoryDate = "0001-01-01";
+        //documents[10].Date = "2014-09-01";
+        //documents[10].Status = "REC";
+
+        //documents[11].DocumentTypeCode = "000026";
+        //documents[11].DocumentTypeSubCode = "00";
+        //documents[11].Category = string.Empty;
+        //documents[11].CategoryGroup = string.Empty;
+        //documents[11].CategoryDate = "0001-01-01";
+        //documents[11].Date = "2014-10-01";
+        //documents[11].Status = "REC";
+
+        //documents[12].DocumentTypeCode = "000026";
+        //documents[12].DocumentTypeSubCode = "00";
+        //documents[12].Category = string.Empty;
+        //documents[12].CategoryGroup = string.Empty;
+        //documents[12].CategoryDate = "0001-01-01";
+        //documents[12].Date = "2014-10-01";
+        //documents[12].Status = "REC";
+
+        //documents[13].DocumentTypeCode = "000026";
+        //documents[13].DocumentTypeSubCode = "00";
+        //documents[13].Category = string.Empty;
+        //documents[13].CategoryGroup = string.Empty;
+        //documents[13].CategoryDate = "0001-01-01";
+        //documents[13].Date = "2014-10-01";
+        //documents[13].Status = "REC";
+
+        //documents[14].DocumentTypeCode = "000028";
+        //documents[14].DocumentTypeSubCode = "00";
+        //documents[14].Category = string.Empty;
+        //documents[14].CategoryGroup = string.Empty;
+        //documents[14].CategoryDate = "0001-01-01";
+        //documents[14].Date = "0001-01-01";
+        //documents[14].Status = "REC";
+
+        //documents[15].DocumentTypeCode = "000030";
+        //documents[15].DocumentTypeSubCode = "00";
+        //documents[15].Category = string.Empty;
+        //documents[15].CategoryGroup = string.Empty;
+        //documents[15].CategoryDate = "0001-01-01";
+        //documents[15].Date = "0001-01-01";
+        //documents[15].Status = "CAN";
+
+        //documents[16].DocumentTypeCode = "000031";
+        //documents[16].DocumentTypeSubCode = "00";
+        //documents[16].Category = string.Empty;
+        //documents[16].CategoryGroup = "01";
+        //documents[16].CategoryDate = "0001-01-01";
+        //documents[16].Date = "0001-01-01";
+        //documents[16].Status = "CAN";
+
+        //documents[17].DocumentTypeCode = "000034";
+        //documents[17].DocumentTypeSubCode = "00";
+        //documents[17].Category = string.Empty;
+        //documents[17].CategoryGroup = "02";
+        //documents[17].CategoryDate = "0001-01-01";
+        //documents[17].Date = "0001-01-01";
+        //documents[17].Status = "CAN";
+
+        //documents[18].DocumentTypeCode = "000035";
+        //documents[18].DocumentTypeSubCode = "00";
+        //documents[18].Category = string.Empty;
+        //documents[18].CategoryGroup = "02";
+        //documents[18].CategoryDate = "0001-01-01";
+        //documents[18].Date = "0001-01-01";
+        //documents[18].Status = "CAN";
+
+        //documents[19].DocumentTypeCode = "000094";
+        //documents[19].DocumentTypeSubCode = "00";
+        //documents[19].Category = string.Empty;
+        //documents[19].CategoryGroup = string.Empty;
+        //documents[19].CategoryDate = "0001-01-01";
+        //documents[19].Date = "0001-01-01";
+        //documents[19].Status = "CAN";

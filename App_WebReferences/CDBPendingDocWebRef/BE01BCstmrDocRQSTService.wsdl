@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://ejb.be01.ABCDE.com.ph" xmlns:wsi="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:tns2="http://DTO.be01.ABCDE.com.ph" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://ejb.be01.ABCDE.com.ph" targetNamespace="http://ejb.be01.ABCDE.com.ph" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://DTO.be01.ABCDE.com.ph">
+      <xsd:complexType name="BE01JAuthenticationDTO">
+        <xsd:sequence>
+          <xsd:element name="userName" nillable="true" type="xsd:string" />
+          <xsd:element name="passWord" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BE01JEnquiryInput">
+        <xsd:sequence>
+          <xsd:element name="bsnsTxNumber" nillable="true" type="xsd:string" />
+          <xsd:element name="bsnsRefNumber" nillable="true" type="xsd:string" />
+          <xsd:element name="customerIdFromSource" nillable="true" type="xsd:string" />
+          <xsd:element name="identityNo" nillable="true" type="xsd:string" />
+          <xsd:element name="identityType" nillable="true" type="xsd:string" />
+          <xsd:element name="customerName" nillable="true" type="xsd:string" />
+          <xsd:element name="docId" nillable="true" type="xsd:string" />
+          <xsd:element name="docIdSub" nillable="true" type="xsd:string" />
+          <xsd:element name="docStartDate" nillable="true" type="xsd:string" />
+          <xsd:element name="timeDocRQST" nillable="true" type="xsd:string" />
+          <xsd:element name="endStatus" nillable="true" type="xsd:string" />
+          <xsd:element name="documentStatus" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BE01JEnquiryResult">
+        <xsd:sequence>
+          <xsd:element name="errorCode" nillable="true" type="xsd:string" />
+          <xsd:element name="errorMssg" nillable="true" type="xsd:string" />
+          <xsd:element name="resultFlag" type="xsd:boolean" />
+          <xsd:element name="outputList" nillable="true" type="tns2:ArrayOfBE01JEnquiryOutput" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BE01JEnquiryOutput">
+        <xsd:sequence>
+          <xsd:element name="bsnsTxNumber" nillable="true" type="xsd:string" />
+          <xsd:element name="bsnsRefNumber" nillable="true" type="xsd:string" />
+          <xsd:element name="customerIdFromSource" nillable="true" type="xsd:string" />
+          <xsd:element name="docId" nillable="true" type="xsd:string" />
+          <xsd:element name="docIdSub" nillable="true" type="xsd:string" />
+          <xsd:element name="docStartDate" nillable="true" type="xsd:string" />
+          <xsd:element name="docEndDate" nillable="true" type="xsd:string" />
+          <xsd:element name="startDocStatus" nillable="true" type="xsd:string" />
+          <xsd:element name="endDocStatus" nillable="true" type="xsd:string" />
+          <xsd:element name="timeDocRqst" nillable="true" type="xsd:string" />
+          <xsd:element name="reRqstRemarkText" nillable="true" type="xsd:string" />
+          <xsd:element name="lastSendFileVerifyTime" nillable="true" type="xsd:string" />
+          <xsd:element name="lastSendRcvUnVerifyTime" nillable="true" type="xsd:string" />
+          <xsd:element name="identityNoSub" nillable="true" type="xsd:string" />
+          <xsd:element name="customerIdSubFromSource" nillable="true" type="xsd:string" />
+          <xsd:element name="requestedUserId" nillable="true" type="xsd:string" />
+          <xsd:element name="bsnsTxCategory" nillable="true" type="xsd:string" />
+          <xsd:element name="bsnsTxCategoryGroup" nillable="true" type="xsd:string" />
+          <xsd:element name="bsnsTxCategoryDate" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfBE01JEnquiryOutput">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1000" name="BE01JEnquiryOutput" nillable="true" type="tns2:BE01JEnquiryOutput" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ejb.be01.ABCDE.com.ph">
+      <xsd:import namespace="http://DTO.be01.ABCDE.com.ph" />
+      <xsd:element name="enquireCstmrDocRQSTResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="enquireCstmrDocRQSTReturn" nillable="true" type="tns2:BE01JEnquiryResult" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="enquireCstmrDocRQST">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="authentication" nillable="true" type="tns2:BE01JAuthenticationDTO" />
+            <xsd:element name="input" nillable="true" type="tns2:BE01JEnquiryInput" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="enquireCstmrDocRQSTResponse">
+    <wsdl:part name="parameters" element="impl:enquireCstmrDocRQSTResponse" />
+  </wsdl:message>
+  <wsdl:message name="enquireCstmrDocRQSTRequest">
+    <wsdl:part name="parameters" element="impl:enquireCstmrDocRQST" />
+  </wsdl:message>
+  <wsdl:portType name="BE01BCstmrDocRQSTBean">
+    <wsdl:operation name="enquireCstmrDocRQST">
+      <wsdl:input name="enquireCstmrDocRQSTRequest" message="impl:enquireCstmrDocRQSTRequest" />
+      <wsdl:output name="enquireCstmrDocRQSTResponse" message="impl:enquireCstmrDocRQSTResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BE01BCstmrDocRQSTSoapBinding" type="impl:BE01BCstmrDocRQSTBean">
+    <wsaw:UsingAddressing wsdl:required="false" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" />
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="enquireCstmrDocRQST">
+      <wsdlsoap:operation soapAction="enquireCstmrDocRQST" />
+      <wsdl:input name="enquireCstmrDocRQSTRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="enquireCstmrDocRQSTResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BE01BCstmrDocRQSTService">
+    <wsdl:port name="BE01BCstmrDocRQST" binding="impl:BE01BCstmrDocRQSTSoapBinding">
+      <wsdlsoap:address location="http://intranet-app.ABCDE.com.ph/webapp/BE01EBCstmrDocRQSTServiceWeb/services/BE01BCstmrDocRQST" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

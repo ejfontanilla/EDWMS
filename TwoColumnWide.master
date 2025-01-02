@@ -1,0 +1,17 @@
+﻿<%@ Master Language="C#" MasterPageFile="Main.master" AutoEventWireup="false" CodeFile="TwoColumnWide.master.cs"
+    Inherits="TwoColumnWide" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainColumn" runat="Server">
+    <table style="height: 100%" width="100%">
+        <tr>
+            <td width="300px" bgcolor="#efefef" valign="top" style="padding: 20px 0px 20px 0px">
+                <asp:ContentPlaceHolder ID="LeftColumn" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+            <td bgcolor="#ffffff" valign="top" style="padding: 20px">
+                <asp:ContentPlaceHolder ID="RightColumn" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+    </table>
+</asp:Content>

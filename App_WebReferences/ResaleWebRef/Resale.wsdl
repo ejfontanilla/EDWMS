@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ResaleHouseholdInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authentication" type="tns:AuthenticationClass" />
+            <s:element minOccurs="0" maxOccurs="1" name="caseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="schemeAccount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="oldLesseeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newLesseeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="buyerAllocationScheme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="buyerEligibilityScheme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codeRecipient" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ROIC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="caseOIC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="eligibilityScheme" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="householdType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AHGGrant" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HH2YINC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bankLoanAmount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ABCDELoanAmount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="householdIncome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CAIncome" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="applicationDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="appointmentDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="completionDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="cancellationDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="refreshHouseholdStructure" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="personals" type="tns:ArrayOfPersonal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthenticationClass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPersonal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Personal" nillable="true" type="tns:Personal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Personal">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsDeletion" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMainApplicant" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nric" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaritalStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfBirth" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Relationship" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Citizenship" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmploymentStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MonthlyIncomeSet" type="tns:ArrayOfMonthlyIncome" />
+          <s:element minOccurs="0" maxOccurs="1" name="Documents" type="tns:ArrayOfDocument" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMonthlyIncome">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MonthlyIncome" nillable="true" type="tns:MonthlyIncome" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MonthlyIncome">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="YearMonth" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Document" nillable="true" type="tns:Document" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Document">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentTypeSubCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryGroup" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ResaleHouseholdInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ResaleHouseholdInfoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ResaleHouseholdInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:ResaleHouseholdInfo" />
+  </wsdl:message>
+  <wsdl:message name="ResaleHouseholdInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:ResaleHouseholdInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ResaleSoap">
+    <wsdl:operation name="ResaleHouseholdInfo">
+      <wsdl:input message="tns:ResaleHouseholdInfoSoapIn" />
+      <wsdl:output message="tns:ResaleHouseholdInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ResaleHttpGet" />
+  <wsdl:portType name="ResaleHttpPost" />
+  <wsdl:binding name="ResaleSoap" type="tns:ResaleSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ResaleHouseholdInfo">
+      <soap:operation soapAction="http://tempuri.org/ResaleHouseholdInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ResaleSoap12" type="tns:ResaleSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ResaleHouseholdInfo">
+      <soap12:operation soapAction="http://tempuri.org/ResaleHouseholdInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ResaleHttpGet" type="tns:ResaleHttpGet">
+    <http:binding verb="GET" />
+  </wsdl:binding>
+  <wsdl:binding name="ResaleHttpPost" type="tns:ResaleHttpPost">
+    <http:binding verb="POST" />
+  </wsdl:binding>
+  <wsdl:service name="Resale">
+    <wsdl:port name="ResaleSoap" binding="tns:ResaleSoap">
+      <soap:address location="http://heasq2/GO-DWMS/WebServices/Resale.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ResaleSoap12" binding="tns:ResaleSoap12">
+      <soap12:address location="http://heasq2/GO-DWMS/WebServices/Resale.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ResaleHttpGet" binding="tns:ResaleHttpGet">
+      <http:address location="http://heasq2/GO-DWMS/WebServices/Resale.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ResaleHttpPost" binding="tns:ResaleHttpPost">
+      <http:address location="http://heasq2/GO-DWMS/WebServices/Resale.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

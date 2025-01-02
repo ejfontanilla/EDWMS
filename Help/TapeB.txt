@@ -1,0 +1,32 @@
+Information        HEASQ2                 04/01/2016 09:49:33    780               Backup Operation Successful.
+Information        HEASQ2                 04/01/2016 09:49:33    780               Total data processed................... 264.89 GB
+Information        HEASQ2                 04/01/2016 09:49:33    780               Total Files backed up.................. 3044746
+Information        HEASQ2                 04/01/2016 09:49:33    780               Serial No [Seq 1]...................... 1000003
+Information        HEASQ2                 04/01/2016 09:49:33    780               Total number of sessions............... 1
+Information        HEASQ2                 04/01/2016 09:49:33    780               Media ID............................... 1E44
+Information        HEASQ2                 04/01/2016 09:49:33    780               Media Name............................. SUN(A)
+Information        HEASQ2                 04/01/2016 09:49:33    780               Media Pool............................. DAILY_A
+Information        HEASQ2                 04/01/2016 09:49:33    780               Device Group........................... GROUP_A
+Information        HEASQ2                 04/01/2016 09:49:33    780               *** Backup Summary for Job ID 780 ***
+Information        HEASQ2                 04/01/2016 09:49:33    780               Media Compression Ratio  : 1.20
+Information        HEASQ2                 04/01/2016 09:49:33    780               Media Remaining Capacity : 2,262,928 MB
+Information        HEASQ2                 04/01/2016 09:49:31    780               Average Throughput: 299.71 MB/min
+Information        HEASQ2                 04/01/2016 09:49:31    780               Elapsed Time: 15h 47m 45s
+Information        HEASQ2                 04/01/2016 09:49:31    780               277.39 GB Written to Media.
+Information        HEASQ2                 04/01/2016 09:49:31    780               1,055,655 Directories  3,044,746 File(s) (264.89 GB) Backed Up to Media.
+Information        HEASQ2                 04/01/2016 09:49:31    780               1 Session(s).
+Information        HEASQ2                 04/01/2016 09:49:31    780               ** Summary for \\HEASQ4 **
+Information        HEASQ2                 04/01/2016 09:49:31    780               Note: Disconnect from \\HEASQ4\E$.
+Information        HEASQ2                 04/01/2016 09:49:30    780      1        Average Throughput: 299.71 MB/min
+Information        HEASQ2                 04/01/2016 09:49:30    780      1        Elapsed Time: 15h 47m 45s
+Information        HEASQ2                 04/01/2016 09:49:30    780      1        277.39 GB Written to Media.
+Information        HEASQ2                 04/01/2016 09:49:30    780      1        1,055,655 Directories  3,044,746 File(s) (264.89 GB) Backed Up to Media.
+Information        HEASQ2                 04/01/2016 09:49:30    780      1        Catalog File Backed Up
+Information        HEASQ2                 04/01/2016 09:49:30    780      1        Media Compression Ratio  : 1.20
+Information        HEASQ2                 03/01/2016 18:01:39    780      1        Backup Session 1 on Media SUN(A) Serial # 1000003
+Information        HEASQ2                 03/01/2016 18:01:39    780      1        Source Directory: \\HEASQ4\E$\Websites\Go-DWMS\App_Data
+Information        HEASQ2                 03/01/2016 18:01:38    780      1        Note: Connect to \\HEASQ4\E$ as Administrator.
+Information        HEASQ2                 03/01/2016 18:01:37    780      1        Global Backup Method: Full (Clear Archive Bit).
+Information        HEASQ2                 03/01/2016 18:01:37    780               Description: Daily A.
+Information        HEASQ2                 03/01/2016 18:01:37    780               Start Backup Operation. (QUEUE=1, JOB=3)
+Information        HEASQ2                 03/01/2016 18:01:36    780               Run Backup Job Now.
